@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ваше Портфолио</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <style>
@@ -15,7 +15,7 @@
             --gray-dark: #1a1a1a;
             --gray-light: #2a2a2a;
             --neon-white: #fff;
-            --neon-glow: 0 0 4px var(--neon-white), 0 0 8px var(--neon-white), 0 0 12px var(--neon-white);
+            --neon-glow: 0 0 3px var(--neon-white), 0 0 6px var(--neon-white);
             --neon-glow-strong: 0 0 8px var(--neon-white), 0 0 16px var(--neon-white), 0 0 24px var(--neon-white), 0 0 32px var(--neon-white);
             --transition: all 0.3s ease;
             --glass-bg: rgba(255, 255, 255, 0.08);
@@ -132,7 +132,6 @@
             color: var(--neon-white);
             position: relative;
             transition: var(--transition);
-            will-change: transform;
         }
 
         .logo:hover {
@@ -174,7 +173,6 @@
             opacity: 1;
             transform: translateY(0);
             transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: opacity, transform;
         }
 
         .nav-links li:nth-child(1) { transition-delay: 0.1s; }
@@ -232,11 +230,13 @@
 
         .menu-toggle {
             display: none;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
             color: var(--white);
             transition: color 0.3s ease;
             z-index: 1001;
+            padding: 10px;
+            margin-left: auto;
         }
 
         .menu-toggle .fa-bars,
@@ -247,6 +247,9 @@
         .menu-toggle .fa-times {
             opacity: 0;
             position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .menu-toggle.active .fa-bars {
@@ -396,7 +399,7 @@
             position: relative;
             width: 100%;
             height: 100%;
-            transition: transform 0.6s;
+            transition: transform 0.6s ease-in-out;
             transform-style: preserve-3d;
         }
 
@@ -541,7 +544,6 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 30px 20px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.06) 100%);
             border-radius: 10px;
         }
 
@@ -767,7 +769,6 @@
         /* Projects Section */
         #projects {
             position: relative;
-            background: linear-gradient(180deg, var(--black), var(--gray-dark));
         }
 
         #projects::before {
@@ -810,8 +811,7 @@
             height: 300px;
             opacity: 0;
             transform: translateY(30px) scale(0.95);
-            transition: opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
-            will-change: transform, opacity;
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
         }
 
         .project-card.animate {
@@ -832,13 +832,11 @@
             position: relative;
             width: 100%;
             height: 100%;
-            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.9s ease-in-out;
             transform-style: preserve-3d;
-            will-change: transform;
         }
 
-        .project-card:hover .project-inner,
-        .project-card.flipped .project-inner {
+        .project-card:hover .project-inner {
             transform: rotateY(180deg);
         }
 
@@ -897,7 +895,6 @@
             color: var(--white);
             border-radius: 8px;
             transition: transform 0.4s ease;
-            will-change: transform;
         }
 
         .project-card:hover .project-img {
@@ -906,13 +903,15 @@
 
         .project-front h3 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-top: 15px;
             text-transform: uppercase;
             letter-spacing: 3px;
             position: relative;
             color: var(--neon-white);
-            text-shadow: var(--neon-glow);
+            text-shadow: 0 0 3px var(--neon-white), 0 0 6px rgba(255, 255, 255, 0.4);
+            font-weight: 500;
+            text-align: center;
         }
 
         .project-back p {
@@ -921,12 +920,10 @@
             line-height: 1.5;
             opacity: 0;
             transform: translateY(10px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            will-change: opacity, transform;
+            transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
         }
 
-        .project-card:hover .project-back p,
-        .project-card.flipped .project-back p {
+        .project-card:hover .project-back p {
             opacity: 1;
             transform: translateY(0);
         }
@@ -948,10 +945,9 @@
             font-size: 0.9rem;
             font-weight: bold;
             position: relative;
-            transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s;
             opacity: 0;
             transform: translateY(10px);
-            will-change: opacity, transform;
         }
 
         .project-links a::before {
@@ -967,14 +963,13 @@
             transition: opacity 0.3s ease;
         }
 
-        .project-card:hover .project-links a,
-        .project-card.flipped .project-links a {
+        .project-card:hover .project-links a {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .project-links a:nth-child(1) { transition-delay: 0.1s; }
-        .project-links a:nth-child(2) { transition-delay: 0.2s; }
+        .project-links a:nth-child(1) { transition-delay: 0.3s; }
+        .project-links a:nth-child(2) { transition-delay: 0.4s; }
 
         .project-links a:hover {
             background: var(--neon-white);
@@ -1082,6 +1077,8 @@
         .social-item:nth-child(2) { transition-delay: 0.2s; }
         .social-item:nth-child(3) { transition-delay: 0.3s; }
         .social-item:nth-child(4) { transition-delay: 0.4s; }
+        .social-item:nth-child(5) { transition-delay: 0.5s; }
+        .social-item:nth-child(6) { transition-delay: 0.6s; }
 
         .social-item:hover {
             box-shadow: var(--neon-glow-strong);
@@ -1259,20 +1256,20 @@
             }
 
             .profile-card {
-                width: 200px;
-                height: 280px;
+                width: 180px;
+                height: 240px;
             }
 
             .profile-front {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
 
             .profile-back h3 {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
 
             .profile-back p {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
             }
 
             .about-accordion {
@@ -1318,7 +1315,7 @@
             }
 
             #projects .projects-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .project-card {
@@ -1330,7 +1327,31 @@
             }
 
             .project-card .project-inner {
-                transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: transform 0.7s ease-in-out;
+                -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+            }
+
+            .project-card:hover .project-img {
+                transform: none;
+                transition: none;
+            }
+
+            .project-inner {
+                -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+            }
+
+            .project-front, .project-back {
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+            }
+
+            .project-card.flipped .project-inner {
+                -webkit-transform: rotateY(180deg);
+                transform: rotateY(180deg);
             }
 
             .socials-grid {
@@ -1397,7 +1418,7 @@
             }
 
             .project-front h3 {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .project-back p {
@@ -1421,6 +1442,23 @@
                 font-size: 0.7rem;
                 padding: 5px 12px;
             }
+
+            .profile-card {
+                width: 150px;
+                height: 200px;
+            }
+
+            .profile-front {
+                font-size: 1.5rem;
+            }
+
+            .profile-back h3 {
+                font-size: 0.9rem;
+            }
+
+            .profile-back p {
+                font-size: 0.7rem;
+            }
         }
     </style>
 </head>
@@ -1436,7 +1474,7 @@
         <div id="header-particles"></div>
         <div class="container">
             <nav>
-                <div class="logo" data-text="pypynyaa">pypynya</div>
+                <div class="logo" data-text="pypynyaa">pypynyaa</div>
                 <div class="menu-toggle" id="menuToggle">
                     <i class="fas fa-bars"></i>
                     <i class="fas fa-times"></i>
@@ -1596,7 +1634,7 @@
         <div class="container">
             <h2>Проекты</h2>
             <div class="projects-grid">
-                <div class="project-card" data-tilt>
+                <div class="project-card">
                     <div class="project-inner">
                         <div class="project-front">
                             <div class="project-img">Cyber Landing</div>
@@ -1611,7 +1649,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-tilt>
+                <div class="project-card">
                     <div class="project-inner">
                         <div class="project-front">
                             <div class="project-img">Portfolio Hub</div>
@@ -1626,7 +1664,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-tilt>
+                <div class="project-card">
                     <div class="project-inner">
                         <div class="project-front">
                             <div class="project-img">CRM System</div>
@@ -1641,7 +1679,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-tilt>
+                <div class="project-card">
                     <div class="project-inner">
                         <div class="project-front">
                             <div class="project-img">E-Shop</div>
@@ -1656,7 +1694,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-tilt>
+                <div class="project-card">
                     <div class="project-inner">
                         <div class="project-front">
                             <div class="project-img">Mobile App</div>
@@ -1671,7 +1709,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-tilt>
+                <div class="project-card">
                     <div class="project-inner">
                         <div class="project-front">
                             <div class="project-img">Analytics Dash</div>
@@ -1686,7 +1724,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-tilt>
+                <div class="project-card">
                     <div class="project-inner">
                         <div class="project-front">
                             <div class="project-img">IoT API</div>
@@ -1701,7 +1739,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-tilt>
+                <div class="project-card">
                     <div class="project-inner">
                         <div class="project-front">
                             <div class="project-img">Platformer Game</div>
@@ -1745,6 +1783,16 @@
                     <div class="social-icon"><i class="fab fa-github"></i></div>
                     <div class="social-name">GitHub</div>
                     <a href="https://github.com/username" class="social-link" target="_blank">Перейти</a>
+                </div>
+                <div class="social-item">
+                    <div class="social-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div class="social-name">WhatsApp</div>
+                    <a href="https://wa.me/1234567890" class="social-link" target="_blank">Перейти</a>
+                </div>
+                <div class="social-item">
+                    <div class="social-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="social-name">Email</div>
+                    <a href="mailto:email@example.com" class="social-link">Перейти</a>
                 </div>
             </div>
         </div>
@@ -1855,10 +1903,10 @@
             retina_detect: true
         });
 
-        // Particles.js initialization for projects
+        // Particles.js initialization for projects (optimized)
         particlesJS('projects-particles', {
             particles: {
-                number: { value: 25, density: { enable: true, value_area: 1200 } },
+                number: { value: 15, density: { enable: true, value_area: 1200 } },
                 color: { value: '#ffffff' },
                 shape: { type: 'circle' },
                 opacity: { value: 0.2, random: true },
@@ -1893,12 +1941,25 @@
         });
 
         // Vanilla Tilt for project cards (desktop only)
+        let tiltInstances = [];
         if (window.innerWidth > 768) {
-            VanillaTilt.init(document.querySelectorAll('.project-card'), {
-                max: 8,
-                speed: 400,
+            tiltInstances = VanillaTilt.init(document.querySelectorAll('.project-card'), {
+                max: 6,
+                speed: 600,
                 glare: true,
                 'max-glare': 0.15
+            });
+        }
+
+        // Функция для сброса tilt и flipped состояний
+        function resetCards() {
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.classList.remove('flipped');
+                const inner = card.querySelector('.project-inner');
+                inner.style.transform = 'rotateY(0deg) translateZ(0)';
+                if (tiltInstances.length > 0) {
+                    tiltInstances.forEach(instance => instance.reset());
+                }
             });
         }
 
@@ -1907,6 +1968,10 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate');
+                    entry.target.style.willChange = 'transform, opacity';
+                    setTimeout(() => {
+                        entry.target.style.willChange = 'auto';
+                    }, 1000);
                 }
             });
         }, { threshold: 0.2 });
@@ -1958,17 +2023,13 @@
         const menuOverlay = document.getElementById('menuOverlay');
 
         const toggleMenu = debounce(() => {
-            const isActive = navLinks.classList.contains('active');
             navLinks.classList.toggle('active');
             menuOverlay.classList.toggle('active');
             menuToggle.classList.toggle('active');
             document.body.classList.toggle('no-scroll');
-
-            // Reset project card flips when menu is toggled
-            if (isActive) {
-                document.querySelectorAll('.project-card').forEach(card => {
-                    card.classList.remove('flipped');
-                });
+            // Сброс карточек при закрытии меню
+            if (!navLinks.classList.contains('active')) {
+                resetCards();
             }
         }, 300);
 
@@ -2002,19 +2063,67 @@
             });
         });
 
-        // Tap-to-flip for mobile with debounce
-        if (window.innerWidth <= 768) {
+        // Tap-to-flip for mobile with improved handling
+        function initMobileFlip() {
+            if (window.innerWidth > 768) {
+                // Destroy tilt on mobile
+                if (tiltInstances.length > 0) {
+                    tiltInstances.forEach(instance => instance.destroy());
+                    tiltInstances = [];
+                }
+                return;
+            }
+
             const flipCard = debounce((card) => {
+                console.log('Flip attempt on card:', card); // Для отладки
                 // Only flip if menu is not active
-                if (!navLinks.classList.contains('active')) {
-                    card.classList.toggle('flipped');
+                if (navLinks.classList.contains('active')) {
+                    console.log('Menu active, skipping flip'); // Отладка
+                    return;
+                }
+
+                const isFlipped = card.classList.contains('flipped');
+                console.log('Current flipped state:', isFlipped); // Отладка
+
+                // Reset all cards first
+                document.querySelectorAll('.project-card').forEach(c => {
+                    if (c !== card) {
+                        c.classList.remove('flipped');
+                        c.querySelector('.project-inner').style.transform = 'rotateY(0deg) translateZ(0)';
+                    }
+                });
+
+                const inner = card.querySelector('.project-inner');
+                if (!isFlipped) {
+                    card.classList.add('flipped');
+                    inner.style.transform = 'rotateY(180deg) translateZ(0)';
+                    console.log('Flipped to back'); // Отладка
+                } else {
+                    card.classList.remove('flipped');
+                    inner.style.transform = 'rotateY(0deg) translateZ(0)';
+                    console.log('Flipped to front'); // Отладка
                 }
             }, 300);
 
             document.querySelectorAll('.project-card').forEach(card => {
-                card.addEventListener('click', () => flipCard(card));
+                // Remove previous listeners to avoid duplicates
+                card.removeEventListener('click', card._flipHandler);
+                card._flipHandler = () => flipCard(card);
+                card.addEventListener('click', card._flipHandler);
             });
         }
+
+        // Initial call and on resize
+        initMobileFlip();
+        window.addEventListener('resize', debounce(initMobileFlip, 250));
+
+        // Reset project card states on page show (to fix back navigation lag)
+        window.addEventListener('pageshow', (event) => {
+            resetCards();
+            if (window.innerWidth <= 768) {
+                initMobileFlip();
+            }
+        });
     </script>
 </body>
 </html>

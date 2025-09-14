@@ -41,15 +41,6 @@
             overflow: hidden;
         }
 
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
         #global-particles {
             position: fixed;
             top: 0;
@@ -428,9 +419,6 @@
             justify-content: center;
             box-shadow: var(--neon-glow);
             padding: 20px;
-            -webkit-backface-visibility: hidden;
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
         }
 
         .profile-front {
@@ -806,7 +794,6 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            pointer-events: none; /* To reduce lag */
         }
 
         #projects .projects-grid {
@@ -825,7 +812,6 @@
             opacity: 0;
             transform: translateY(30px) scale(0.95);
             transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
-            -webkit-perspective: 1200px;
         }
 
         .project-card.animate {
@@ -848,13 +834,10 @@
             height: 100%;
             transition: transform 0.9s ease-in-out;
             transform-style: preserve-3d;
-            -webkit-transform-style: preserve-3d;
-            -webkit-transition: transform 0.9s ease-in-out;
         }
 
         .project-card:hover .project-inner {
             transform: rotateY(180deg);
-            -webkit-transform: rotateY(180deg);
         }
 
         .project-front, .project-back {
@@ -870,9 +853,6 @@
             box-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
             padding: 15px;
             background: var(--gray-dark);
-            -webkit-backface-visibility: hidden;
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
         }
 
         .project-front {
@@ -882,7 +862,6 @@
         .project-card:hover .project-front {
             transform: scale(1.03);
             box-shadow: var(--neon-glow-strong);
-            -webkit-transform: scale(1.03);
         }
 
         .project-back {
@@ -892,7 +871,6 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            -webkit-transform: rotateY(180deg);
         }
 
         .project-back::before {
@@ -917,7 +895,6 @@
             color: var(--white);
             border-radius: 8px;
             transition: transform 0.4s ease;
-            object-fit: cover; /* Для img */
         }
 
         .project-card:hover .project-img {
@@ -1208,7 +1185,7 @@
             visibility: visible;
         }
 
-        /* Mobile Styles - Optimized for performance */
+        /* Updated Mobile Menu Styles */
         @media (max-width: 768px) {
             .nav-links {
                 position: fixed;
@@ -1337,15 +1314,6 @@
                 font-size: 2.5rem;
             }
 
-            /* Disable heavy animations on mobile for skills */
-            .skill-item:hover {
-                transform: scale(1.05); /* Less aggressive */
-            }
-
-            .skill-item::after {
-                display: none; /* No shine */
-            }
-
             #projects .projects-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1358,10 +1326,10 @@
                 height: 120px;
             }
 
-            /* Mobile flip optimized */
             .project-card .project-inner {
-                transition: transform 1s ease-in-out; /* Slower for smoothness */
-                -webkit-transition: transform 1s ease-in-out;
+                transition: transform 0.7s ease-in-out;
+                -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
             }
 
             .project-card:hover .project-img {
@@ -1369,19 +1337,21 @@
                 transition: none;
             }
 
-            /* Disable glitch and shine on mobile */
-            .project-front h3::before,
-            .project-front h3::after {
-                display: none;
+            .project-inner {
+                -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
             }
 
-            .project-card:hover .project-front {
-                transform: none; /* No scale on hover for mobile */
+            .project-front, .project-back {
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
             }
 
             .project-card.flipped .project-inner {
-                -webkit-transform: rotateY(180deg) translateZ(0);
-                transform: rotateY(180deg) translateZ(0);
+                -webkit-transform: rotateY(180deg);
+                transform: rotateY(180deg);
             }
 
             .socials-grid {
@@ -1403,11 +1373,6 @@
             .social-link {
                 font-size: 0.8rem;
                 padding: 6px 15px;
-            }
-
-            /* Disable shine on socials mobile */
-            .social-item::after {
-                display: none;
             }
         }
 
@@ -1509,7 +1474,7 @@
         <div id="header-particles"></div>
         <div class="container">
             <nav>
-                <div class="logo" data-text="pypynyaa">pypynyaa</div>
+                <div class="logo" data-text="pypynyaa">pypynya</div>
                 <div class="menu-toggle" id="menuToggle">
                     <i class="fas fa-bars"></i>
                     <i class="fas fa-times"></i>
@@ -1529,7 +1494,7 @@
     <section id="hero">
         <div id="particles-js"></div>
         <div class="hero-content">
-            <h1>pypynyaa</h1>
+            <h1>pypynya</h1>
             <p>Фронтенд-разработчик / UI/UX Дизайнер</p>
             <a href="#projects" class="btn">Мои проекты</a>
         </div>
@@ -1672,7 +1637,6 @@
                 <div class="project-card">
                     <div class="project-inner">
                         <div class="project-front">
-                            <!-- Замените на <img class="project-img" src="images/cyber-landing.jpg" alt="Неоновый лендинг" loading="lazy"> -->
                             <div class="project-img">Cyber Landing</div>
                             <h3 data-text="Неоновый лендинг">Неоновый лендинг</h3>
                         </div>
@@ -1688,7 +1652,6 @@
                 <div class="project-card">
                     <div class="project-inner">
                         <div class="project-front">
-                            <!-- Замените на img -->
                             <div class="project-img">Portfolio Hub</div>
                             <h3 data-text="Интерактивное портфолио">Интерактивное портфолио</h3>
                         </div>
@@ -1704,7 +1667,6 @@
                 <div class="project-card">
                     <div class="project-inner">
                         <div class="project-front">
-                            <!-- Замените на img -->
                             <div class="project-img">CRM System</div>
                             <h3 data-text="Веб-приложение CRM">Веб-приложение CRM</h3>
                         </div>
@@ -1720,7 +1682,6 @@
                 <div class="project-card">
                     <div class="project-inner">
                         <div class="project-front">
-                            <!-- Замените на img -->
                             <div class="project-img">E-Shop</div>
                             <h3 data-text="E-commerce платформа">E-commerce платформа</h3>
                         </div>
@@ -1736,7 +1697,6 @@
                 <div class="project-card">
                     <div class="project-inner">
                         <div class="project-front">
-                            <!-- Замените на img -->
                             <div class="project-img">Mobile App</div>
                             <h3 data-text="Мобильное приложение">Мобильное приложение</h3>
                         </div>
@@ -1752,7 +1712,6 @@
                 <div class="project-card">
                     <div class="project-inner">
                         <div class="project-front">
-                            <!-- Замените на img -->
                             <div class="project-img">Analytics Dash</div>
                             <h3 data-text="Дашборд аналитики">Дашборд аналитики</h3>
                         </div>
@@ -1768,7 +1727,6 @@
                 <div class="project-card">
                     <div class="project-inner">
                         <div class="project-front">
-                            <!-- Замените на img -->
                             <div class="project-img">IoT API</div>
                             <h3 data-text="API для IoT">API для IoT</h3>
                         </div>
@@ -1784,7 +1742,6 @@
                 <div class="project-card">
                     <div class="project-inner">
                         <div class="project-front">
-                            <!-- Замените на img -->
                             <div class="project-img">Platformer Game</div>
                             <h3 data-text="Игра-платформер">Игра-платформер</h3>
                         </div>
@@ -1849,7 +1806,7 @@
     </footer>
 
     <script>
-        // Debounce function
+        // Debounce function to prevent rapid successive triggers
         function debounce(func, wait) {
             let timeout;
             return function executedFunction(...args) {
@@ -1862,13 +1819,10 @@
             };
         }
 
-        // Detect mobile for optimizations
-        const isMobile = window.innerWidth <= 768;
-
-        // Particles config - reduced for mobile
-        const particleConfig = (isReduced = isMobile) => ({
+        // Global Snow-like Particles
+        particlesJS('global-particles', {
             particles: {
-                number: { value: isReduced ? 20 : 80, density: { enable: true, value_area: 800 } },
+                number: { value: 80, density: { enable: true, value_area: 800 } },
                 color: { value: '#ffffff' },
                 shape: { type: 'circle' },
                 opacity: { value: 0.2, random: true },
@@ -1876,7 +1830,7 @@
                 line_linked: { enable: false },
                 move: { 
                     enable: true, 
-                    speed: isReduced ? 0.4 : 0.8, 
+                    speed: 0.8, 
                     direction: 'bottom', 
                     random: true,
                     straight: false,
@@ -1886,26 +1840,16 @@
             },
             interactivity: {
                 detect_on: 'canvas',
-                events: { 
-                    onhover: { enable: !isReduced, mode: 'grab' }, 
-                    onclick: { enable: !isReduced, mode: 'push' } 
-                },
-                modes: { 
-                    grab: { distance: 200, line_linked: { opacity: 0.8 } }, 
-                    push: { particles_nb: 3 } 
-                }
+                events: { onhover: { enable: false }, onclick: { enable: false } }
             },
             retina_detect: true
         });
 
-        // Global Particles
-        particlesJS('global-particles', particleConfig(isMobile));
-
         // Header Particles (desktop only)
-        if (!isMobile) {
+        if (window.innerWidth > 768) {
             particlesJS('header-particles', {
                 particles: {
-                    number: { value: 20 },
+                    number: { value: 20, density: { enable: true, value_area: 800 } },
                     color: { value: '#ffffff' },
                     shape: { type: 'circle' },
                     opacity: { value: 0.15, random: true },
@@ -1913,59 +1857,62 @@
                     line_linked: { enable: false },
                     move: { enable: true, speed: 0.5, direction: 'none', random: true }
                 },
-                interactivity: { detect_on: 'canvas', events: { onhover: { enable: false }, onclick: { enable: false } } },
+                interactivity: {
+                    detect_on: 'canvas',
+                    events: { onhover: { enable: false }, onclick: { enable: false } }
+                },
                 retina_detect: true
             });
         }
 
-        // Hero Particles
+        // Particles.js initialization for hero
         particlesJS('particles-js', {
             particles: {
-                number: { value: isMobile ? 20 : 60 },
+                number: { value: 60, density: { enable: true, value_area: 800 } },
                 color: { value: '#ffffff' },
                 shape: { type: 'circle' },
                 opacity: { value: 0.4, random: true },
                 size: { value: 3, random: true },
-                line_linked: { enable: !isMobile, distance: 150, color: '#ffffff', opacity: 0.3, width: 1 },
-                move: { enable: true, speed: isMobile ? 0.8 : 1.5, direction: 'none', random: false }
+                line_linked: { enable: true, distance: 150, color: '#ffffff', opacity: 0.3, width: 1 },
+                move: { enable: true, speed: 1.5, direction: 'none', random: false }
             },
             interactivity: {
                 detect_on: 'canvas',
-                events: { onhover: { enable: !isMobile, mode: 'grab' }, onclick: { enable: !isMobile, mode: 'push' } },
+                events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' } },
                 modes: { grab: { distance: 200, line_linked: { opacity: 0.8 } }, push: { particles_nb: 3 } }
             },
             retina_detect: true
         });
 
-        // About Particles
+        // Particles.js initialization for about
         particlesJS('about-particles', {
             particles: {
-                number: { value: isMobile ? 15 : 40 },
+                number: { value: 40, density: { enable: true, value_area: 1000 } },
                 color: { value: '#ffffff' },
                 shape: { type: 'circle' },
                 opacity: { value: 0.2, random: true },
                 size: { value: 2, random: true },
                 line_linked: { enable: false },
-                move: { enable: true, speed: isMobile ? 0.4 : 0.8, direction: 'none', random: true }
+                move: { enable: true, speed: 0.8, direction: 'none', random: true }
             },
             interactivity: {
                 detect_on: 'canvas',
-                events: { onhover: { enable: !isMobile, mode: 'repulse' }, onclick: { enable: false } },
+                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: false } },
                 modes: { repulse: { distance: 80, duration: 0.3 } }
             },
             retina_detect: true
         });
 
-        // Projects Particles - heavily reduced
+        // Particles.js initialization for projects (optimized)
         particlesJS('projects-particles', {
             particles: {
-                number: { value: isMobile ? 5 : 15 },
+                number: { value: 15, density: { enable: true, value_area: 1200 } },
                 color: { value: '#ffffff' },
                 shape: { type: 'circle' },
                 opacity: { value: 0.2, random: true },
                 size: { value: 2, random: true },
                 line_linked: { enable: false },
-                move: { enable: true, speed: isMobile ? 0.2 : 0.3, direction: 'none', random: true }
+                move: { enable: true, speed: 0.3, direction: 'none', random: true }
             },
             interactivity: {
                 detect_on: 'canvas',
@@ -1974,28 +1921,28 @@
             retina_detect: true
         });
 
-        // Socials Particles
+        // Particles.js initialization for socials
         particlesJS('socials-particles', {
             particles: {
-                number: { value: isMobile ? 10 : 30 },
+                number: { value: 30, density: { enable: true, value_area: 1000 } },
                 color: { value: '#ffffff' },
                 shape: { type: 'circle' },
                 opacity: { value: 0.2, random: true },
                 size: { value: 2, random: true },
                 line_linked: { enable: false },
-                move: { enable: true, speed: isMobile ? 0.3 : 0.5, direction: 'none', random: true }
+                move: { enable: true, speed: 0.5, direction: 'none', random: true }
             },
             interactivity: {
                 detect_on: 'canvas',
-                events: { onhover: { enable: !isMobile, mode: 'repulse' }, onclick: { enable: false } },
+                events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: false } },
                 modes: { repulse: { distance: 100, duration: 0.3 } }
             },
             retina_detect: true
         });
 
-        // Vanilla Tilt (desktop only)
+        // Vanilla Tilt for project cards (desktop only)
         let tiltInstances = [];
-        if (!isMobile) {
+        if (window.innerWidth > 768) {
             tiltInstances = VanillaTilt.init(document.querySelectorAll('.project-card'), {
                 max: 6,
                 speed: 600,
@@ -2004,25 +1951,24 @@
             });
         }
 
-        // Reset cards
+        // Функция для сброса tilt и flipped состояний
         function resetCards() {
             document.querySelectorAll('.project-card').forEach(card => {
                 card.classList.remove('flipped');
                 const inner = card.querySelector('.project-inner');
                 inner.style.transform = 'rotateY(0deg) translateZ(0)';
-                inner.style.webkitTransform = 'rotateY(0deg) translateZ(0)';
                 if (tiltInstances.length > 0) {
                     tiltInstances.forEach(instance => instance.reset());
                 }
             });
         }
 
-        // Scroll animations with will-change
+        // Scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate');
-                    if (!isMobile) entry.target.style.willChange = 'transform, opacity';
+                    entry.target.style.willChange = 'transform, opacity';
                     setTimeout(() => {
                         entry.target.style.willChange = 'auto';
                     }, 1000);
@@ -2032,8 +1978,9 @@
 
         document.querySelectorAll('h2, #about .about-container, .skill-item, .project-card, .timeline-item, .social-item').forEach(el => observer.observe(el));
 
-        // Accordion
+        // Accordion functionality
         const accordionHeaders = document.querySelectorAll('.accordion-header');
+
         accordionHeaders.forEach(header => {
             header.addEventListener('click', () => {
                 const accordionItem = header.parentElement;
@@ -2054,18 +2001,20 @@
             });
         });
 
-        // Typewriter
+        // Typewriter effect for bio
         const bioText = document.getElementById('bio-text');
         const fullText = bioText.textContent;
         let i = 0;
         bioText.textContent = '';
+
         function typeWriter() {
             if (i < fullText.length) {
                 bioText.textContent += fullText.charAt(i);
                 i++;
-                setTimeout(typeWriter, isMobile ? 80 : 60); // Slower on mobile
+                setTimeout(typeWriter, 60);
             }
         }
+
         setTimeout(typeWriter, 1000);
 
         // Mobile menu
@@ -2078,6 +2027,7 @@
             menuOverlay.classList.toggle('active');
             menuToggle.classList.toggle('active');
             document.body.classList.toggle('no-scroll');
+            // Сброс карточек при закрытии меню
             if (!navLinks.classList.contains('active')) {
                 resetCards();
             }
@@ -2089,15 +2039,15 @@
             link.addEventListener('click', toggleMenu);
         });
 
-        // Header scroll
-        window.addEventListener('scroll', debounce(() => {
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
-        }, 100));
+        });
 
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2113,77 +2063,67 @@
             });
         });
 
-        // Mobile flip - improved with hardware accel
+        // Tap-to-flip for mobile with improved handling
         function initMobileFlip() {
-            const currentIsMobile = window.innerWidth <= 768;
-            if (!currentIsMobile) {
+            if (window.innerWidth > 768) {
+                // Destroy tilt on mobile
                 if (tiltInstances.length > 0) {
                     tiltInstances.forEach(instance => instance.destroy());
-                    tiltInstances = VanillaTilt.init(document.querySelectorAll('.project-card'), {
-                        max: 6,
-                        speed: 600,
-                        glare: true,
-                        'max-glare': 0.15
-                    });
+                    tiltInstances = [];
                 }
                 return;
             }
 
-            // Destroy tilt if exists
-            if (tiltInstances.length > 0) {
-                tiltInstances.forEach(instance => instance.destroy());
-                tiltInstances = [];
-            }
-
             const flipCard = debounce((card) => {
-                if (navLinks.classList.contains('active')) return;
+                console.log('Flip attempt on card:', card); // Для отладки
+                // Only flip if menu is not active
+                if (navLinks.classList.contains('active')) {
+                    console.log('Menu active, skipping flip'); // Отладка
+                    return;
+                }
 
                 const isFlipped = card.classList.contains('flipped');
+                console.log('Current flipped state:', isFlipped); // Отладка
+
+                // Reset all cards first
                 document.querySelectorAll('.project-card').forEach(c => {
                     if (c !== card) {
                         c.classList.remove('flipped');
-                        const inner = c.querySelector('.project-inner');
-                        inner.style.transform = 'rotateY(0deg) translateZ(0)';
-                        inner.style.webkitTransform = 'rotateY(0deg) translateZ(0)';
+                        c.querySelector('.project-inner').style.transform = 'rotateY(0deg) translateZ(0)';
                     }
                 });
 
                 const inner = card.querySelector('.project-inner');
-                card.style.willChange = 'transform'; // Temp for accel
                 if (!isFlipped) {
                     card.classList.add('flipped');
                     inner.style.transform = 'rotateY(180deg) translateZ(0)';
-                    inner.style.webkitTransform = 'rotateY(180deg) translateZ(0)';
+                    console.log('Flipped to back'); // Отладка
                 } else {
                     card.classList.remove('flipped');
                     inner.style.transform = 'rotateY(0deg) translateZ(0)';
-                    inner.style.webkitTransform = 'rotateY(0deg) translateZ(0)';
+                    console.log('Flipped to front'); // Отладка
                 }
-                setTimeout(() => { card.style.willChange = 'auto'; }, 1000);
-            }, 400); // Longer debounce for mobile
+            }, 300);
 
             document.querySelectorAll('.project-card').forEach(card => {
+                // Remove previous listeners to avoid duplicates
                 card.removeEventListener('click', card._flipHandler);
                 card._flipHandler = () => flipCard(card);
-                card.addEventListener('click', card._flipHandler, { passive: true }); // Passive for perf
+                card.addEventListener('click', card._flipHandler);
             });
         }
 
+        // Initial call and on resize
         initMobileFlip();
         window.addEventListener('resize', debounce(initMobileFlip, 250));
 
-        // Reset on page show
+        // Reset project card states on page show (to fix back navigation lag)
         window.addEventListener('pageshow', (event) => {
             resetCards();
-            setTimeout(initMobileFlip, 100);
-        });
-
-        // Re-init particles on resize if mobile changes
-        window.addEventListener('resize', debounce(() => {
-            if (window.innerWidth <= 768 !== isMobile) {
-                location.reload(); // Simple reload for particles reset (or re-init manually)
+            if (window.innerWidth <= 768) {
+                initMobileFlip();
             }
-        }, 250));
+        });
     </script>
 </body>
 </html>

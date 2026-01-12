@@ -61,7 +61,7 @@ const About = () => {
               <div className="absolute -inset-3 border border-foreground/10 rounded-2xl group-hover:scale-105 transition-transform duration-700" />
               <div className="w-full h-full rounded-2xl overflow-hidden border border-border/50 bg-muted/20">
                 <img 
-                  src="/path-to-your-photo.jpeg" 
+                  src="./path-to-your-photo.jpeg" 
                   alt="pypynyaa" 
                   className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
                 /> 

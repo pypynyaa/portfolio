@@ -106,3 +106,55 @@
     mask-composite: exclude;
   }
 }
+
+@keyframes shoot-basket-left {
+  0%   { 
+    transform: translate(0, 0) rotate(0deg) scale(1); 
+  }
+  40%  { 
+    transform: translate(-50px, -90px) rotate(180deg) scale(1.1); 
+  }
+  70%  { 
+    transform: translate(-80px, -50px) rotate(360deg) scale(1.05); 
+  }
+  100% { 
+    transform: translate(-100px, -20px) rotate(540deg) scale(0.9); 
+  }
+}
+
+.animate-shoot-basket-left { 
+  animation: shoot-basket-left 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; 
+}
+
+@keyframes score {
+  0%   { transform: scale(1) rotate(0deg); }
+  50%  { transform: scale(1.6) rotate(20deg); }
+  100% { transform: scale(1.25) rotate(0deg); }
+}
+
+@keyframes miss {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  25%, 75% { transform: translateX(-12px) rotate(-8deg); }
+  50%      { transform: translateX(12px) rotate(8deg); }
+}
+
+@keyframes basketball-arc {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, -60px) scale(1.1); }
+  100% { transform: translate(85px, -35px) scale(0.6); }
+}
+
+@keyframes basketball-miss {
+  0% { transform: translate(85px, -35px) scale(0.6); }
+  100% { transform: translate(100px, 50px) rotate(180deg) scale(0.6); opacity: 0; }
+}
+
+@keyframes net-sway {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(1.2) scaleY(0.9); }
+}
+
+.animate-shoot-basket { animation: shoot-basket 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+.animate-score        { animation: score 0.9s ease-out; }
+.animate-miss         { animation: miss 0.7s ease-in-out; }
+.animate-ping-once    { animation: ping-once 1.5s ease-out forwards; }

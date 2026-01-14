@@ -23,19 +23,17 @@ const translations = {
 
     // About
     'about.title': 'Обо мне',
-    'about.role1': 'Фронтенд-разработчик',
-    'about.role2': 'UI/UX Дизайнер',
-    'about.years': '2020 - н.в.',
+    'about.role1': 'Разработчик',
+    'about.role2': 'Full Stack',
+    'about.years': '2023 - н.в.',
     'about.path.title': 'Мой путь',
-    'about.path.content': 'Начал путь в веб-разработке в 2020 году, самоучкой изучая HTML и CSS. К 2022 году освоил React и начал работать над реальными проектами. Сегодня сочетаю фронтенд с бэкендом для fullstack решений.',
+    'about.path.content': 'Начал путь в веб-разработке в 2023 году, самоучкой изучая HTML и CSS. К 2025 году освоил React и начал работать над реальными проектами. Сегодня сочетаю фронтенд с бэкендом для fullstack решений.',
     'about.passion.title': 'Мои страсти',
-    'about.passion.content': 'Обожаю минимализм в дизайне, неоновые эффекты и плавные анимации. Вдохновляюсь cyberpunk и нуар-эстетикой. Люблю экспериментировать с новыми фреймворками и языками программирования.',
+    'about.passion.content': 'Люблю минимализм в дизайне, неоновые эффекты и плавные анимации. Вдохновляюсь cyberpunk и нуар-эстетикой. Люблю экспериментировать с новыми фреймворками и языками программирования.',
     'about.goals.title': 'Мои цели',
-    'about.goals.content': 'Стремлюсь к созданию инновационных интерфейсов, которые меняют пользовательский опыт. Цель — стать лидирующим fullstack-разработчиком в команде и внести вклад в open-source проекты.',
-    'about.history': 'Моя история',
-    'about.timeline.2020': 'Начал изучение веб-разработки, освоив HTML, CSS и JavaScript, заложив фундамент для будущих проектов.',
-    'about.timeline.2022': 'Завершил первый крупный проект на React и начал изучение бэкенда с Node.js.',
-    'about.timeline.2024': 'Погрузился в Python и базы данных, освоив PostgreSQL для создания масштабируемых приложений.',
+    'about.goals.content': 'Стремлюсь к созданию инновационных интерфейсов в том числе и для образования. Цель — разработать интуитивно понятный и приятный интерфейс, который будет понятен даже детям.',
+    'about.timeline.2023': 'Начал изучение веб-разработки, освоив HTML, CSS и JavaScript, заложив фундамент для будущих проектов.',
+    'about.timeline.2024': 'Начал первый крупный проект на React, погрузился в Python и базы данных, освоив PostgreSQL для создания масштабируемых приложений.',
     'about.timeline.2025': 'Стал фрилансером, расширил технологический стек до Java и PHP, работая над разнообразными проектами.',
 
     // Skills
@@ -85,11 +83,11 @@ const translations = {
 
     // About
     'about.title': 'About Me',
-    'about.role1': 'Frontend Developer',
-    'about.role2': 'UI/UX Designer',
-    'about.years': '2020 - present',
+    'about.role1': 'Developer',
+    'about.role2': 'Full Stack Developer',
+    'about.years': '2023 - present',
     'about.path.title': 'My Journey',
-    'about.path.content': 'Started my journey in web development in 2020, self-taught HTML and CSS. By 2022, I mastered React and began working on real projects. Today I combine frontend with backend for fullstack solutions.',
+    'about.path.content': 'Started my journey in web development in 2023, self-taught HTML and CSS. By 2025, I mastered React and began working on real projects. Today I combine frontend with backend for fullstack solutions.',
     'about.passion.title': 'My Passions',
     'about.passion.content': 'I love minimalism in design, neon effects and smooth animations. Inspired by cyberpunk and noir aesthetics. I enjoy experimenting with new frameworks and programming languages.',
     'about.goals.title': 'My Goals',

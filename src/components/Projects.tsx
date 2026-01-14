@@ -102,6 +102,13 @@ const Projects = () => {
   const { t } = useLanguage();
 
   const projects = [
+      {
+      title: "Aspera",
+      subtitle: "Industrial Landing",
+      description: "Специализированный сайт для услуг алмазного бурения с четкой структурой и формами захвата.",
+      link: 'https://pypynyaa.github.io/LegionAlmaz/',
+      github: 'https://github.com/pypynyaa/LegionAlmaz'
+    },
     {
       title: "Legion Almaz",
       subtitle: "Industrial Landing",

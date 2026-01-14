@@ -26,8 +26,7 @@ const About = () => {
   ];
 
   const timeline = [
-    { year: '2020', text: t('about.timeline.2020') },
-    { year: '2022', text: t('about.timeline.2022') },
+    { year: '2023', text: t('about.timeline.2023') },
     { year: '2024', text: t('about.timeline.2024') },
     { year: '2025', text: t('about.timeline.2025') },
   ];
@@ -63,7 +62,7 @@ const About = () => {
                 <img 
                   src="./path-to-your-photo.jpeg" 
                   alt="pypynyaa" 
-                  className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                  className="w-full h-full object-cover group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
                 /> 
               </div>
             </div>
@@ -76,7 +75,7 @@ const About = () => {
             className="flex-1 text-center lg:text-left space-y-6"
           >
             <div className="inline-block px-4 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-4">
-              Hello, I'm pypynyaa
+              Hello, I'm Nikita Nigmatchanov
             </div>
             <h3 className="font-display text-3xl md:text-4xl font-bold leading-tight uppercase tracking-tight">
               {t('about.role1')} <br />
@@ -88,12 +87,12 @@ const About = () => {
             </p>
             <div className="flex justify-center lg:justify-start gap-8 pt-4">
               <div className="flex flex-col">
-                <span className="text-2xl font-bold italic tracking-tighter">3+</span>
+                <span className="text-2xl font-bold italic tracking-tighter">2+</span>
                 <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{t('about.years')}</span>
               </div>
               <div className="w-px h-10 bg-border/50" />
               <div className="flex flex-col">
-                <span className="text-2xl font-bold italic tracking-tighter">20+</span>
+                <span className="text-2xl font-bold italic tracking-tighter">10+</span>
                 <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Projects</span>
               </div>
             </div>

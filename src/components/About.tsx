@@ -82,8 +82,8 @@ const About = () => {
               <span className="text-muted-foreground font-light">{t('about.role2')}</span>
             </h3>
             <p className="text-base text-muted-foreground max-w-lg mx-auto lg:mx-0 leading-relaxed">
-              Focused on crafting minimalist interfaces and robust digital solutions. 
-              Turning complex problems into elegant, user-centric designs.
+              В данный момент проживаю в Санкт-Петербурге, Россия. 
+              Увлекаюсь созданием современных веб-приложений с акцентом на производительность и пользовательский опыт.
             </p>
             <div className="flex justify-center lg:justify-start gap-8 pt-4">
               <div className="flex flex-col">

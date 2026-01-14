@@ -9,44 +9,44 @@ const Contacts = () => {
     { 
       name: 'Telegram', 
       icon: Send, 
-      href: 'https://t.me/username',
+      href: 'https://t.me/pypynyaa',
       color: 'from-blue-400 to-blue-600',
-      description: '@username'
+      description: '@pypynyaa'
     },
     { 
       name: 'Instagram', 
       icon: Instagram, 
-      href: 'https://instagram.com/username',
+      href: 'https://instagram.com/nigmatchanovn',
       color: 'from-pink-500 via-purple-500 to-orange-400',
-      description: '@username'
+      description: '@nigmatchanovn'
     },
     { 
       name: t('contacts.telegram.channel'), 
       icon: MessageCircle, 
-      href: 'https://t.me/channelname',
+      href: 'https://t.me/two_nn',
       color: 'from-cyan-400 to-blue-500',
-      description: '@channel'
+      description: '@two_nn'
     },
     { 
       name: 'GitHub', 
       icon: Github, 
-      href: 'https://github.com/username',
+      href: 'https://github.com/pypynyaa',
       color: 'from-gray-400 to-gray-600',
-      description: 'username'
+      description: 'pypynyaa'
     },
     { 
       name: 'WhatsApp', 
       icon: MessageCircle, 
-      href: 'https://wa.me/1234567890',
+      href: 'https://wa.me/+79776863050',
       color: 'from-green-400 to-green-600',
-      description: '+7 999 999 99 99'
+      description: '+7 977 686 30 50'
     },
     { 
       name: 'Email', 
       icon: Mail, 
-      href: 'mailto:email@example.com',
+      href: 'mailto:nikita662006@bk.ru',
       color: 'from-red-400 to-orange-500',
-      description: 'email@example.com'
+      description: 'nikita662006@bk.ru'
     },
   ];
 

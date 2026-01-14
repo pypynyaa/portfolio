@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, Loader2, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -33,27 +33,83 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
       </div>
 
       {/* Live Site Container */}
-      <div className="relative aspect-video bg-black/20 overflow-hidden">
-        <div className={`absolute inset-0 flex flex-col items-center justify-center bg-background/90 z-10 transition-opacity duration-700 
-          ${isLoaded ? 'group-hover:opacity-0 group-hover:pointer-events-none' : 'opacity-100'}`}>
-           <span className="font-display text-[9px] uppercase tracking-[0.3em] text-muted-foreground mb-3">
-             {t('projects.preview') || 'Live Preview'}
-           </span>
-           <Loader2 className="animate-spin text-muted-foreground/20" size={20} />
-        </div>
+      {/* Live Site Container - SYSTEM INITIALIZATION STYLE */}
+      <div className="relative aspect-video bg-[#050505] overflow-hidden group/canvas">
+        
+        {/* Эффект сетки (Grid) всегда на фоне */}
+        <div className="absolute inset-0 z-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:15px_15px]" />
 
+        <AnimatePresence>
+          {!isLoaded && (
+            <motion.div 
+              exit={{ opacity: 0, scale: 1.1 }}
+              transition={{ duration: 0.8, ease: "circOut" }}
+              className="absolute inset-0 flex flex-col items-center justify-center z-30 bg-[#050505]"
+            >
+              {/* Анимированный сканер (бегущая полоса) */}
+              <motion.div 
+                className="absolute inset-0 z-10 pointer-events-none"
+                initial={{ top: "-100%" }}
+                animate={{ top: "100%" }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                style={{ 
+                  background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.05), transparent)',
+                  height: '20%' 
+                }}
+              />
+
+              {/* Центральный блок загрузки */}
+              <div className="relative z-20 flex flex-col items-center">
+                {/* Иконка "Система" */}
+                <div className="relative mb-4">
+                  <div className="absolute inset-0 blur-md bg-white/10 animate-pulse" />
+                  <Globe size={24} className="text-white relative z-10 opacity-80" />
+                </div>
+
+                {/* Текстовые данные */}
+                <div className="text-center space-y-1">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-white/60 block">
+                    {t('projects.preview') || 'Initializing Link'}
+                  </span>
+                  
+                  {/* Имитация загрузки байтов */}
+                  <div className="font-mono text-[8px] text-white/20 uppercase flex gap-4 mt-2">
+                    <motion.span animate={{ opacity: [0, 1, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
+                      ADDR: 0x{Math.random().toString(16).slice(2, 6).toUpperCase()}
+                    </motion.span>
+                    <motion.span animate={{ opacity: [0, 1, 0] }} transition={{ repeat: Infinity, duration: 1.5, delay: 0.5 }}>
+                      STATUS: STREAMING
+                    </motion.span>
+                  </div>
+                </div>
+
+                {/* Технологичный прогресс-бар */}
+                <div className="w-32 h-[2px] bg-white/5 mt-6 relative overflow-hidden rounded-full">
+                  <motion.div 
+                    className="absolute inset-y-0 left-0 bg-white/40"
+                    initial={{ width: "0%" }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Сам Iframe (появляется после загрузки) */}
         <iframe
           src={project.link}
-          className="w-[200%] h-[200%] origin-top-left border-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-          style={{ 
-            transform: 'scale(0.5)',
-          }}
+          className={`w-[200%] h-[200%] origin-top-left border-none transition-all duration-1000 
+            ${isLoaded ? 'opacity-40 grayscale group-hover/canvas:opacity-100 group-hover/canvas:grayscale-0 group-hover/canvas:scale-[0.52]' : 'opacity-0'}`}
+          style={{ transform: 'scale(0.5)' }}
           onLoad={() => setIsLoaded(true)}
           loading="lazy"
           title={project.title}
         />
         
-        <div className="absolute inset-0 z-20 pointer-events-auto group-hover:pointer-events-none" />
+        {/* Слой блокировки кликов внутри фрейма, пока не навели */}
+        <div className="absolute inset-0 z-40 pointer-events-auto group-hover/canvas:pointer-events-none" />
       </div>
       
       {/* Project Info */}
@@ -102,26 +158,19 @@ const Projects = () => {
   const { t } = useLanguage();
 
   const projects = [
-      {
+    {
       title: "Aspera",
       subtitle: "Industrial Landing",
-      description: "Специализированный сайт для услуг алмазного бурения с четкой структурой и формами захвата.",
-      link: 'https://pypynyaa.github.io/LegionAlmaz/',
-      github: 'https://github.com/pypynyaa/LegionAlmaz'
+      description: "Экосистема для школ - в разработке. Современный интерфейс для образовательных учреждений.",
+      link: 'https://github.com/patewy/aspera-project',
+      github: 'https://github.com/pypynyaa/aspera'
     },
     {
-      title: "Legion Almaz",
+      title: "ITMOLAB",
       subtitle: "Industrial Landing",
-      description: "Специализированный сайт для услуг алмазного бурения с четкой структурой и формами захвата.",
-      link: 'https://pypynyaa.github.io/LegionAlmaz/',
-      github: 'https://github.com/pypynyaa/LegionAlmaz'
-    },
-    {
-      title: "Blok Lending",
-      subtitle: "Modern Landing Page",
-      description: "Минималистичный лендинг с акцентом на типографику и чистоту интерфейса.",
-      link: 'https://pypynyaa.github.io/blok-lending/',
-      github: 'https://github.com/pypynyaa/blok-lending'
+      description: "Лабораторные работы университета ИТМО. Заполняется.",
+      link: 'https://se.ifmo.ru/courses/programming#labs',
+      github: 'https://github.com/pypynyaa/itmo.java'
     },
     {
       title: "Sibyriak",
@@ -138,9 +187,23 @@ const Projects = () => {
       github: 'https://github.com/pypynyaa/party-deanysus'
     },
     {
-      title: "Company Site",
+      title: "Legion Almaz",
+      subtitle: "Industrial Landing",
+      description: "Специализированный сайт для услуг алмазного бурения с четкой структурой и формами захвата.",
+      link: 'https://pypynyaa.github.io/LegionAlmaz/',
+      github: 'https://github.com/pypynyaa/LegionAlmaz'
+    },
+    {
+      title: "Blok Lending",
+      subtitle: "Modern Landing Page",
+      description: "Минималистичный лендинг с акцентом на типографику и чистоту интерфейса.",
+      link: 'https://pypynyaa.github.io/blok-lending/',
+      github: 'https://github.com/pypynyaa/blok-lending'
+    },
+    {
+      title: "My company site",
       subtitle: "Corporate Portal",
-      description: "Корпоративное решение для представления бизнес-услуг.",
+      description: "Сайт для хранения воспоминаний компании с современным дизайном и удобной навигацией.",
       link: 'https://pypynyaa.github.io/my_company_site/',
       github: 'https://github.com/pypynyaa/my_company_site'
     },
@@ -149,8 +212,15 @@ const Projects = () => {
       subtitle: "Engineering",
       description: "Инженерно-проектировочный портал с техническим уклоном.",
       link: 'http://specbyr.ru',
-      github: '#'
-    }
+      github: 'https://github.com/pypynyaa/almaz'
+    },
+    {
+      title: "ProfHub",
+      subtitle: "Industrial Landing",
+      description: "Специализированный сайт для услуг алмазного бурения с четкой структурой и формами захвата.",
+      link: 'https://pypynyaa.github.io/LegionAlmaz/',
+      github: 'https://github.com/pypynyaa/ProfHub'
+    },
   ];
 
   return (

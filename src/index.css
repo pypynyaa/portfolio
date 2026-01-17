@@ -158,3 +158,4 @@
 .animate-score        { animation: score 0.9s ease-out; }
 .animate-miss         { animation: miss 0.7s ease-in-out; }
 .animate-ping-once    { animation: ping-once 1.5s ease-out forwards; }
+

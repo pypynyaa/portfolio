@@ -1,9 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, Loader2, Globe } from 'lucide-react';
+import { ExternalLink, Github, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useState } from 'react';
 
+// Компонент одной карточки
 const ProjectCard = ({ project, index }: { project: any, index: number }) => {
   const { t } = useLanguage();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -16,27 +17,10 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
       viewport={{ once: true }}
       className="group bg-card/20 backdrop-blur-md border border-border/40 rounded-2xl overflow-hidden hover:border-foreground/30 transition-all duration-500 flex flex-col h-full shadow-2xl"
     >
-      {/* Browser Frame Header */}
-      <div className="bg-muted/30 border-b border-border/40 px-4 py-3 flex items-center justify-between">
-        <div className="flex gap-1.5">
-          <div className="w-2 h-2 rounded-full bg-border/60" />
-          <div className="w-2 h-2 rounded-full bg-border/60" />
-          <div className="w-2 h-2 rounded-full bg-border/60" />
-        </div>
-        <div className="flex items-center gap-2 bg-background/40 px-3 py-0.5 rounded border border-border/20">
-          <Globe size={10} className="text-muted-foreground" />
-          <span className="text-[9px] text-muted-foreground truncate max-w-[150px]">
-            {project.link.replace('https://', '').replace('http://', '')}
-          </span>
-        </div>
-        <div className="w-8" />
-      </div>
+      
 
-      {/* Live Site Container */}
-      {/* Live Site Container - SYSTEM INITIALIZATION STYLE */}
+      {/* Media Container */}
       <div className="relative aspect-video bg-[#050505] overflow-hidden group/canvas">
-        
-        {/* Эффект сетки (Grid) всегда на фоне */}
         <div className="absolute inset-0 z-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:15px_15px]" />
 
         <AnimatePresence>
@@ -46,7 +30,6 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
               transition={{ duration: 0.8, ease: "circOut" }}
               className="absolute inset-0 flex flex-col items-center justify-center z-30 bg-[#050505]"
             >
-              {/* Анимированный сканер (бегущая полоса) */}
               <motion.div 
                 className="absolute inset-0 z-10 pointer-events-none"
                 initial={{ top: "-100%" }}
@@ -57,33 +40,16 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
                   height: '20%' 
                 }}
               />
-
-              {/* Центральный блок загрузки */}
               <div className="relative z-20 flex flex-col items-center">
-                {/* Иконка "Система" */}
                 <div className="relative mb-4">
                   <div className="absolute inset-0 blur-md bg-white/10 animate-pulse" />
                   <Globe size={24} className="text-white relative z-10 opacity-80" />
                 </div>
-
-                {/* Текстовые данные */}
                 <div className="text-center space-y-1">
                   <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-white/60 block">
-                    {t('projects.preview') || 'Initializing Link'}
+                    {t('projects.preview') || 'Initializing Stream'}
                   </span>
-                  
-                  {/* Имитация загрузки байтов */}
-                  <div className="font-mono text-[8px] text-white/20 uppercase flex gap-4 mt-2">
-                    <motion.span animate={{ opacity: [0, 1, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
-                      ADDR: 0x{Math.random().toString(16).slice(2, 6).toUpperCase()}
-                    </motion.span>
-                    <motion.span animate={{ opacity: [0, 1, 0] }} transition={{ repeat: Infinity, duration: 1.5, delay: 0.5 }}>
-                      STATUS: STREAMING
-                    </motion.span>
-                  </div>
                 </div>
-
-                {/* Технологичный прогресс-бар */}
                 <div className="w-32 h-[2px] bg-white/5 mt-6 relative overflow-hidden rounded-full">
                   <motion.div 
                     className="absolute inset-y-0 left-0 bg-white/40"
@@ -97,18 +63,28 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
           )}
         </AnimatePresence>
 
-        {/* Сам Iframe (появляется после загрузки) */}
-        <iframe
-          src={project.link}
-          className={`w-[200%] h-[200%] origin-top-left border-none transition-all duration-1000 
-            ${isLoaded ? 'opacity-40 grayscale group-hover/canvas:opacity-100 group-hover/canvas:grayscale-0 group-hover/canvas:scale-[0.52]' : 'opacity-0'}`}
-          style={{ transform: 'scale(0.5)' }}
-          onLoad={() => setIsLoaded(true)}
-          loading="lazy"
-          title={project.title}
-        />
+        {project.image ? (
+          // ВСТАВКА КАРТИНКИ
+          <img
+            src={project.image}
+            alt={project.title}
+            className={`w-full h-full object-cover transition-all duration-1000 
+              ${isLoaded ? 'opacity-40 grayscale group-hover/canvas:opacity-100 group-hover/canvas:grayscale-0 scale-100' : 'opacity-0'}`}
+            onLoad={() => setIsLoaded(true)}
+          />
+        ) : (
+          // ОСТАВЛЯЕМ IFRAME ДЛЯ ТЕХ, ГДЕ НЕТ ФОТО
+          <iframe
+            src={project.link}
+            className={`border-none transition-all duration-1000 origin-top-left
+              ${project.isVideo ? 'w-full h-full scale-100' : 'w-[200%] h-[200%] scale-[0.5]'}
+              ${isLoaded ? 'opacity-40 grayscale group-hover/canvas:opacity-100 group-hover/canvas:grayscale-0' : 'opacity-0'}
+            `}
+            onLoad={() => setIsLoaded(true)}
+            title={project.title}
+          />
+        )}
         
-        {/* Слой блокировки кликов внутри фрейма, пока не навели */}
         <div className="absolute inset-0 z-40 pointer-events-auto group-hover/canvas:pointer-events-none" />
       </div>
       
@@ -126,28 +102,20 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
         </p>
         
         <div className="flex gap-2 mt-auto">
-          <Button
-            variant="outline"
-            size="sm"
-            asChild
-            className="flex-1 text-[11px] border-border/40 hover:bg-foreground hover:text-background transition-all rounded-xl"
-          >
-            <a href={project.link} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="w-3.5 h-3.5 mr-2" />
-              {t('projects.site') || 'Visit'}
-            </a>
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            asChild
-            className="flex-1 text-[11px] border-border/40 hover:bg-foreground hover:text-background transition-all rounded-xl"
-          >
-            <a href={project.github} target="_blank" rel="noopener noreferrer">
-              <Github className="w-3.5 h-3.5 mr-2" />
-              GitHub
-            </a>
-          </Button>
+          {project.links.map((link: any, i: number) => (
+            <Button
+              key={i}
+              variant="outline"
+              size="sm"
+              asChild
+              className="flex-1 text-[11px] border-border/40 hover:bg-foreground hover:text-background transition-all rounded-xl"
+            >
+              <a href={link.url} target="_blank" rel="noopener noreferrer">
+                {link.type === 'github' ? <Github className="w-3.5 h-3.5 mr-2" /> : <ExternalLink className="w-3.5 h-3.5 mr-2" />}
+                {link.label}
+              </a>
+            </Button>
+          ))}
         </div>
       </div>
     </motion.div>
@@ -162,64 +130,94 @@ const Projects = () => {
       title: "Aspera",
       subtitle: "Industrial Landing",
       description: "Экосистема для школ - в разработке. Современный интерфейс для образовательных учреждений.",
-      link: 'https://github.com/patewy/aspera-project',
-      github: 'https://github.com/pypynyaa/aspera'
+      image: "./IMG_9920.JPG",
+      displayUrl: 'aspera.school/preview',
+      isVideo: true,
+      links: [
+        { label: 'Frontend', url: 'https://github.com/patewy/aspera-project', type: 'github' },
+        { label: 'Backend', url: 'https://github.com/pypynyaa/aspera', type: 'github' },
+        { label: 'Docs', url: 'https://drive.google.com/file/d/1KmEYPetPSxfUKFDy5L0AV2Dmt9sQkil-/view?usp=sharing', type: ' ' },
+      ]
     },
     {
       title: "ITMOLAB",
       subtitle: "Industrial Landing",
       description: "Лабораторные работы университета ИТМО. Заполняется.",
-      link: 'https://se.ifmo.ru/courses/programming#labs',
-      github: 'https://github.com/pypynyaa/itmo.java'
+      image: "./IMG_9918.JPG",
+      link: 'https://drive.google.com/file/d/1zGxuz75YISKIbAlKVZ-rNv_NLuXO8OiJ/preview',
+      links: [
+        { label: t('projects.site') || 'Visit', url: 'https://se.ifmo.ru/courses/programming#labs', type: 'site' },
+        { label: 'GitHub', url: 'https://github.com/pypynyaa/itmo.java', type: 'github' },
+      ]
     },
     {
       title: "Sibyriak",
       subtitle: "E-commerce",
       description: "Интернет-магазин сибирской одежды. Глубокая проработка UI и UX.",
       link: 'https://sibyriak.ru',
-      github: '#'
+      links: [
+        { label: t('projects.site') || 'Visit', url: 'https://sibyriak.ru', type: 'site' },
+        { label: 'GitHub', url: 'https://github.com/pypynyaa/sibyriak', type: 'github' },
+      ]
     },
     {
       title: "Party Deanysus",
       subtitle: "Event Landing",
       description: "Яркий и динамичный промо-сайт для мероприятий.",
       link: 'https://pypynyaa.github.io/party-deanysus/',
-      github: 'https://github.com/pypynyaa/party-deanysus'
+      links: [
+        { label: t('projects.site') || 'Visit', url: 'https://pypynyaa.github.io/party-deanysus/', type: 'site' },
+        { label: 'GitHub', url: 'https://github.com/pypynyaa/party-deanysus', type: 'github' },
+      ]
     },
     {
       title: "Legion Almaz",
       subtitle: "Industrial Landing",
-      description: "Специализированный сайт для услуг алмазного бурения с четкой структурой и формами захвата.",
+      description: "Специализированный сайт для услуг алмазного бурения.",
       link: 'https://pypynyaa.github.io/LegionAlmaz/',
-      github: 'https://github.com/pypynyaa/LegionAlmaz'
+      links: [
+        { label: t('projects.site') || 'Visit', url: 'https://pypynyaa.github.io/LegionAlmaz/', type: 'site' },
+        { label: 'GitHub', url: 'https://github.com/pypynyaa/LegionAlmaz', type: 'github' },
+      ]
+    },
+        {
+      title: "My company site",
+      subtitle: "Corporate Portal",
+      description: "Сайт для хранения воспоминаний компании с современным дизайном.",
+      link: 'https://pypynyaa.github.io/my_company_site/',
+      links: [
+        { label: t('projects.site') || 'Visit', url: 'https://pypynyaa.github.io/my_company_site/', type: 'site' },
+        { label: 'GitHub', url: 'https://github.com/pypynyaa/my_company_site', type: 'github' },
+      ]
     },
     {
       title: "Blok Lending",
       subtitle: "Modern Landing Page",
-      description: "Минималистичный лендинг с акцентом на типографику и чистоту интерфейса.",
+      description: "Минималистичный лендинг с акцентом на типографику.",
       link: 'https://pypynyaa.github.io/blok-lending/',
-      github: 'https://github.com/pypynyaa/blok-lending'
-    },
-    {
-      title: "My company site",
-      subtitle: "Corporate Portal",
-      description: "Сайт для хранения воспоминаний компании с современным дизайном и удобной навигацией.",
-      link: 'https://pypynyaa.github.io/my_company_site/',
-      github: 'https://github.com/pypynyaa/my_company_site'
+      links: [
+        { label: t('projects.site') || 'Visit', url: 'https://pypynyaa.github.io/blok-lending/', type: 'site' },
+        { label: 'GitHub', url: 'https://github.com/pypynyaa/blok-lending', type: 'github' },
+      ]
     },
     {
       title: "SpecByr",
       subtitle: "Engineering",
       description: "Инженерно-проектировочный портал с техническим уклоном.",
       link: 'http://specbyr.ru',
-      github: 'https://github.com/pypynyaa/almaz'
+      links: [
+        { label: t('projects.site') || 'Visit', url: 'http://specbyr.ru', type: 'site' },
+        { label: 'GitHub', url: 'https://github.com/pypynyaa/almaz', type: 'github' },
+      ]
     },
     {
       title: "ProfHub",
       subtitle: "Industrial Landing",
-      description: "Специализированный сайт для услуг алмазного бурения с четкой структурой и формами захвата.",
+      description: "Специализированный хаб для профессиональных услуг.",
       link: 'https://pypynyaa.github.io/LegionAlmaz/',
-      github: 'https://github.com/pypynyaa/ProfHub'
+      links: [
+        { label: 'Github', url: 'https://github.com/pypynyaa/ProfHub', type: 'github' },
+      ]
     },
   ];
 

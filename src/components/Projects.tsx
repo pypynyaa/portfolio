@@ -128,11 +128,10 @@ const Projects = () => {
   const projects = [
     {
       title: "Aspera",
-      subtitle: "Industrial Landing",
+      subtitle: "Web-based School Ecosystem",
       description: "Экосистема для школ - в разработке. Современный интерфейс для образовательных учреждений.",
       image: "./IMG_9930.JPG",
       displayUrl: 'aspera.school/preview',
-      isVideo: true,
       links: [
         { label: 'Frontend', url: 'https://github.com/patewy/aspera-project', type: 'github' },
         { label: 'Backend', url: 'https://github.com/pypynyaa/aspera', type: 'github' },
@@ -141,7 +140,7 @@ const Projects = () => {
     },
     {
       title: "ITMOLAB",
-      subtitle: "Industrial Landing",
+      subtitle: "University Lab Works",
       description: "Лабораторные работы университета ИТМО. Заполняется.",
       image: "./IMG_9918.JPG",
       link: 'https://drive.google.com/file/d/1zGxuz75YISKIbAlKVZ-rNv_NLuXO8OiJ/preview',
@@ -182,7 +181,7 @@ const Projects = () => {
     },
         {
       title: "My company site",
-      subtitle: "Corporate Portal",
+      subtitle: "Corporate Website",
       description: "Сайт для хранения воспоминаний компании с современным дизайном.",
       link: 'https://pypynyaa.github.io/my_company_site/',
       links: [
@@ -204,6 +203,7 @@ const Projects = () => {
       title: "SpecByr",
       subtitle: "Engineering",
       description: "Специализированный сайт для услуг алмазного бурения.",
+      image: "./IMG_9932.JPG",
       link: 'http://specbyr.ru',
       links: [
         { label: t('projects.site') || 'Visit', url: 'http://specbyr.ru', type: 'site' },
@@ -212,8 +212,9 @@ const Projects = () => {
     },
     {
       title: "ProfHub",
-      subtitle: "Industrial Landing",
+      subtitle: "Professional Testing Hub",
       description: "Специализированный хаб для проверки профпригодности.",
+      image: "./IMG_9931.JPG",
       link: 'https://pypynyaa.github.io/LegionAlmaz/',
       links: [
         { label: 'Github', url: 'https://github.com/pypynyaa/ProfHub', type: 'github' },

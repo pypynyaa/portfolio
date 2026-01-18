@@ -1,6 +1,6 @@
 import ParticleNetwork from '@/components/ParticleNetwork';
 import FloatingNav from '@/components/FloatingNav';
-import LanguageSwitcher from '@/components/LanguageSwitcher'; // Вернул твой компонент
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Skills from '@/components/Skills';
@@ -11,25 +11,26 @@ import AboutSection from '@/components/AboutSection';
 
 const Index = () => {
   return (
-    /* Провайдер НЕ нужен — он уже в App.tsx */
     <div className="relative min-h-screen bg-background text-foreground">
       {/* Точки на фоне */}
       <ParticleNetwork />
       
-      {/* Обертка для кнопок, чтобы они были кликабельны поверх частиц */}
+      {/* Кнопка языка */}
       <div className="fixed top-6 right-6 z-[100]">
         <LanguageSwitcher />
       </div>
 
+      {/* Твое боковое меню */}
       <FloatingNav />
 
       <main className="relative z-10">
-        <Hero />
-        <About />
-        <AboutSection />
-        <Skills />
-        <Projects />
-        <Contacts />
+        {/* Оборачиваем в секции с ID, чтобы FloatingNav знал, куда скроллить */}
+        <section id="home"><Hero /></section>
+        <section id="about"><About /></section>
+        <AboutSection /> 
+        <section id="skills"><Skills /></section>
+        <section id="projects"><Projects /></section>
+        <section id="contacts"><Contacts /></section>
       </main>
       
       <Footer />

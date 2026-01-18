@@ -5,6 +5,16 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const Hero = () => {
   const { t } = useLanguage();
 
+  // Функция для плавного перехода к проектам
+  const scrollToProjects = () => {
+    const element = document.getElementById('projects');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      // Опционально: обновляем хеш в URL без перезагрузки
+      window.history.pushState(null, '', '#/projects');
+    }
+  };
+
   return (
     <section
       id="home"
@@ -35,12 +45,12 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <Button
-            asChild
             variant="outline"
             size="lg"
+            onClick={scrollToProjects} // Теперь клик работает через JS скролл
             className="border-foreground/30 hover:border-foreground hover:bg-foreground hover:text-background transition-all duration-300 box-glow-hover px-8 py-6 text-base"
           >
-            <a href="#projects">{t('hero.cta')}</a>
+            {t('hero.cta')}
           </Button>
         </motion.div>
       </div>

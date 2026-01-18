@@ -32,7 +32,7 @@ const AboutSection = () => {
               <div className="w-3 h-3 rounded-full bg-emerald-500/40 border border-emerald-500/50" />
             </div>
             <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-500 flex items-center gap-2">
-              <Terminal className="w-3.5 h-3.5" /> root@user:~ /brain_core
+              <Terminal className="w-3.5 h-3.5" /> nigmatcanov@MacBook-Pro-Nikita-4:~ /brain_core
             </div>
           </div>
 
@@ -57,7 +57,7 @@ const AboutSection = () => {
                   </div>
                 </div>
                 <p className="text-slate-200 text-xs font-bold leading-snug pl-1">
-                  Программная инженерия, нейротехнологии и программирование
+                  Программная инженерия; Нейротехнологии и программирование.
                 </p>
               </div>
             </div>
@@ -75,7 +75,7 @@ const AboutSection = () => {
                 </div>
                 <div className="bg-white/5 p-3 rounded-2xl border border-white/5 flex items-center gap-3">
                    <Award className="w-4 h-4 text-emerald-500" />
-                   <span className="text-slate-300 text-[10px] font-bold leading-tight">Призер Олимпиад</span>
+                   <span className="text-slate-300 text-[10px] font-bold leading-tight">Призер Олимпиад по Математике, Физике, Экономике и Обществознанию.</span>
                 </div>
               </div>
             </div>
@@ -86,15 +86,15 @@ const AboutSection = () => {
                 <div className="flex items-center gap-2 text-indigo-400 text-[10px] font-black uppercase tracking-widest">
                   <Binary className="w-3.5 h-3.5" /> Pure Science
                 </div>
-                <p className="text-slate-500 text-[11px] leading-relaxed italic border-l border-white/5 pl-4">
-                  Логика как фундамент. Увлечение математикой и физикой.
+                <p className="text-slate-500 text-[11px] leading-relaxed italic border-l border-white/5 pl-0">
+                  Увлечение математикой и физикой с 4-х лет.
                 </p>
               </div>
               <div className="space-y-3">
                 <div className="flex items-center gap-2 text-rose-400 text-[10px] font-black uppercase tracking-widest">
                   <Clapperboard className="w-3.5 h-3.5" /> Creative
                 </div>
-                <div className="flex flex-wrap gap-2 pl-4">
+                <div className="flex flex-wrap gap-2 pl-0">
                    <span className="text-[10px] text-slate-300 bg-white/5 px-2 py-1 rounded-md border border-white/5">Сценарии</span>
                    <span className="text-[10px] text-slate-300 bg-white/5 px-2 py-1 rounded-md border border-white/5">Актив ВУЗа</span>
                 </div>
@@ -118,8 +118,8 @@ const AboutSection = () => {
                   10
                 </div>
                 <div>
-                  <h3 className="font-black text-white uppercase italic tracking-tighter text-2xl leading-none">Boxing</h3>
-                  <p className="text-slate-500 text-[11px] uppercase font-bold tracking-widest mt-2">10 Years Experience</p>
+                  <h3 className="font-black text-white uppercase italic tracking-tighter text-2xl leading-none">Бокс</h3>
+                  <p className="text-slate-500 text-[11px] uppercase font-bold tracking-widest mt-2">10 лет опыта</p>
                 </div>
               </div>
             </div>
@@ -128,8 +128,8 @@ const AboutSection = () => {
             <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-[2.2rem] flex flex-col justify-between hover:border-indigo-500/40 transition-all group min-h-[180px]">
               <Tent className="w-6 h-6 text-indigo-400 group-hover:scale-110 transition-transform" />
               <div>
-                <h3 className="text-white font-black uppercase italic tracking-tighter text-lg">Camp</h3>
-                <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest mt-1">Organizer</p>
+                <h3 className="text-white font-black uppercase italic tracking-tighter text-lg">Научный лагерь</h3>
+                <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest mt-1">Организатор</p>
               </div>
             </div>
 
@@ -137,8 +137,8 @@ const AboutSection = () => {
             <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-[2.2rem] flex flex-col justify-between hover:border-emerald-500/40 transition-all group min-h-[180px]">
               <Dumbbell className="w-6 h-6 text-emerald-400 group-hover:scale-110 transition-transform" />
               <div>
-                <h3 className="text-white font-black uppercase italic tracking-tighter text-lg">Gym</h3>
-                <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest mt-1">4 Years</p>
+                <h3 className="text-white font-black uppercase italic tracking-tighter text-lg">Пауэрлифтинг</h3>
+                <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest mt-1">4 года</p>
               </div>
             </div>
 
@@ -146,8 +146,8 @@ const AboutSection = () => {
             <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-[2.2rem] flex flex-col justify-between hover:border-amber-500/40 transition-all group min-h-[180px]">
               <Trophy className="w-6 h-6 text-amber-500 group-hover:scale-110 transition-transform" />
               <div>
-                <h3 className="text-white font-black uppercase italic tracking-tighter text-lg">Basketball</h3>
-                <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest mt-1">Active Player</p>
+                <h3 className="text-white font-black uppercase italic tracking-tighter text-lg">Баскетбол</h3>
+                <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest mt-1">Игрок</p>
               </div>
             </div>
 
@@ -155,8 +155,8 @@ const AboutSection = () => {
             <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-[2.2rem] flex flex-col justify-between hover:border-sky-500/40 transition-all group min-h-[180px]">
               <Globe className="w-6 h-6 text-sky-400 group-hover:scale-110 transition-transform" />
               <div>
-                <h3 className="text-white font-black uppercase italic tracking-tighter text-lg">Travel</h3>
-                <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest mt-1">Explorer</p>
+                <h3 className="text-white font-black uppercase italic tracking-tighter text-lg">Путешествия</h3>
+                <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest mt-1">Исследователь</p>
               </div>
             </div>
           </div>

@@ -35,7 +35,7 @@ const translations = {
     'about.timeline.2023': 'Начал изучение веб-разработки, освоив HTML, CSS и JavaScript, заложив фундамент для будущих проектов.',
     'about.timeline.2024': 'Начал первый крупный проект на React, погрузился в Python и базы данных, освоив PostgreSQL для создания масштабируемых приложений.',
     'about.timeline.2025': 'Стал фрилансером, расширил технологический стек до Java и PHP, работая над разнообразными проектами.',
-
+    'about.history': 'Моя история',
     // Skills
     'skills.title': 'Навыки',
     'skills.design': 'UI/UX Дизайн',
@@ -64,6 +64,7 @@ const translations = {
 
     // Contacts
     'contacts.title': 'Мои соцсети',
+    'contacts.subtitle': 'Свяжитесь со мной любым удобным способом',
     'contacts.telegram.channel': 'Telegram Канал',
 
     // Footer
@@ -87,15 +88,14 @@ const translations = {
     'about.role2': 'Full Stack Developer',
     'about.years': '2023 - present',
     'about.path.title': 'My Journey',
-    'about.path.content': 'Started my journey in web development in 2023, self-taught HTML and CSS. By 2025, I mastered React and began working on real projects. Today I combine frontend with backend for fullstack solutions.',
+    'about.path.content': 'Started my web development journey in 2023, self-learning HTML and CSS. By 2025, I mastered React and began working on real projects. Today, I combine frontend and backend skills for fullstack solutions.',
     'about.passion.title': 'My Passions',
-    'about.passion.content': 'I love minimalism in design, neon effects and smooth animations. Inspired by cyberpunk and noir aesthetics. I enjoy experimenting with new frameworks and programming languages.',
+    'about.passion.content': 'I love minimalism in design, neon effects, and smooth animations. Inspired by cyberpunk and noir aesthetics. I enjoy experimenting with new frameworks and programming languages.',
     'about.goals.title': 'My Goals',
-    'about.goals.content': 'I strive to create innovative interfaces that transform user experience. My goal is to become a leading fullstack developer and contribute to open-source projects.',
+    'about.goals.content': 'I aim to create innovative interfaces for education. My goal is to develop an intuitive and enjoyable interface that is easy to understand, even for children.',  
     'about.history': 'My Story',
-    'about.timeline.2020': 'Started learning web development, mastering HTML, CSS and JavaScript, laying the foundation for future projects.',
-    'about.timeline.2022': 'Completed my first major React project and started learning backend with Node.js.',
-    'about.timeline.2024': 'Dove into Python and databases, mastering PostgreSQL for scalable applications.',
+    'about.timeline.2023': 'Began learning web development, mastering HTML, CSS, and JavaScript, laying the foundation for future projects.',
+    'about.timeline.2024': 'Started first major project in React, delved into Python and databases, mastering PostgreSQL for building scalable applications.',
     'about.timeline.2025': 'Became a freelancer, expanded tech stack to Java and PHP, working on diverse projects.',
 
     // Skills
@@ -127,6 +127,7 @@ const translations = {
     // Contacts
     'contacts.title': 'My Social Media',
     'contacts.telegram.channel': 'Telegram Channel',
+    'contacts.subtitle': 'Contact me in any convenient way',
 
     // Footer
     'footer.rights': 'All rights reserved.',

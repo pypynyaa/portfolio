@@ -12,14 +12,14 @@ const Skills = () => {
 
   // Оборачиваем в useMemo, чтобы массив пересоздавался при смене языка
   const skills = useMemo(() => [
-    { name: 'HTML/CSS', icon: <Palette size={20} />, level: 'Expert' },
-    { name: 'JavaScript', icon: <Terminal size={20} />, level: 'Advanced' },
-    { name: 'React', icon: <Atom size={20} />, level: 'Advanced' },
-    { name: 'Python', icon: <Code2 size={20} />, level: 'Intermediate' },
-    { name: 'PostgreSQL', icon: <Database size={20} />, level: 'Advanced' },
-    { name: 'PHP/Java', icon: <Layers size={20} />, level: 'Intermediate' },
-    { name: 'Architecture', icon: <Cpu size={20} />, level: 'Advanced' },
-    { name: t('skills.design'), icon: <Globe2 size={20} />, level: 'Expert' },
+    { name: 'HTML/CSS', icon: <Palette size={20} />},
+    { name: 'JavaScript', icon: <Terminal size={20} />},
+    { name: 'React', icon: <Atom size={20} />},
+    { name: 'Python', icon: <Code2 size={20} />},
+    { name: 'PostgreSQL', icon: <Database size={20} />},
+    { name: 'PHP/Java', icon: <Layers size={20} />},
+    { name: 'Architecture', icon: <Cpu size={20} />},
+    { name: t('skills.design'), icon: <Globe2 size={20} />},
   ], [t, language]); // Зависимости: перевод и язык
 
   const containerVariants: Variants = {
@@ -81,10 +81,7 @@ const Skills = () => {
                 <h3 className="font-display text-sm md:text-base font-bold tracking-wide mb-1 uppercase text-foreground">
                   {skill.name}
                 </h3>
-                
-                <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 font-medium">
-                  {skill.level}
-                </span>
+            
 
                 <div className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-foreground/0 group-hover:bg-foreground/20 transition-all duration-500" />
               </div>

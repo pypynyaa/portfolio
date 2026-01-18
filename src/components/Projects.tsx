@@ -130,7 +130,7 @@ const Projects = () => {
       title: "Aspera",
       subtitle: "Industrial Landing",
       description: "Экосистема для школ - в разработке. Современный интерфейс для образовательных учреждений.",
-      image: "./IMG_9920.JPG",
+      image: "./IMG_9930.JPG",
       displayUrl: 'aspera.school/preview',
       isVideo: true,
       links: [
@@ -153,7 +153,7 @@ const Projects = () => {
     {
       title: "Sibyriak",
       subtitle: "E-commerce",
-      description: "Интернет-магазин сибирской одежды. Глубокая проработка UI и UX.",
+      description: "Сайт растущей базы отдыха в Сибири. Интуитивный интерфейс для бронирования и информации.",
       link: 'https://sibyriak.ru',
       links: [
         { label: t('projects.site') || 'Visit', url: 'https://sibyriak.ru', type: 'site' },
@@ -193,7 +193,7 @@ const Projects = () => {
     {
       title: "Blok Lending",
       subtitle: "Modern Landing Page",
-      description: "Минималистичный лендинг с акцентом на типографику.",
+      description: "Минималистичный лендинг с акцентом на типографику. ",
       link: 'https://pypynyaa.github.io/blok-lending/',
       links: [
         { label: t('projects.site') || 'Visit', url: 'https://pypynyaa.github.io/blok-lending/', type: 'site' },
@@ -203,7 +203,7 @@ const Projects = () => {
     {
       title: "SpecByr",
       subtitle: "Engineering",
-      description: "Инженерно-проектировочный портал с техническим уклоном.",
+      description: "Специализированный сайт для услуг алмазного бурения.",
       link: 'http://specbyr.ru',
       links: [
         { label: t('projects.site') || 'Visit', url: 'http://specbyr.ru', type: 'site' },
@@ -213,7 +213,7 @@ const Projects = () => {
     {
       title: "ProfHub",
       subtitle: "Industrial Landing",
-      description: "Специализированный хаб для профессиональных услуг.",
+      description: "Специализированный хаб для проверки профпригодности.",
       link: 'https://pypynyaa.github.io/LegionAlmaz/',
       links: [
         { label: 'Github', url: 'https://github.com/pypynyaa/ProfHub', type: 'github' },

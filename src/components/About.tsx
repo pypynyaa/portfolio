@@ -135,9 +135,9 @@ const About = () => {
             {timeline.map((item, index) => (
               <motion.div
                 key={item.year}
-                initial={{ opacity: 0, y: (shouldReduceMotion || isMobile) ? 0 : 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.5 }}
+                initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+                whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+                transition={shouldReduceMotion ? {} : { duration: 0.5 }}
                 viewport={{ once: true, margin: '-50px' }}
                 className={`relative mb-12 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:text-right md:ml-[-50%]' : 'md:pl-12 md:ml-0'}`}
               >

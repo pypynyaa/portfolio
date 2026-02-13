@@ -33,18 +33,18 @@ const Hero = () => {
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: (shouldReduceMotion || isMobile) ? 0 : 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.8, delay: 0.4 }}
+          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
+          animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+          transition={shouldReduceMotion ? {} : { duration: 0.8, delay: 0.4 }}
           className="text-muted-foreground text-lg md:text-xl mb-10"
         >
           {t('hero.role')}
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: (shouldReduceMotion || isMobile) ? 0 : 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.8, delay: 0.6 }}
+          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
+          animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+          transition={shouldReduceMotion ? {} : { duration: 0.8, delay: 0.6 }}
         >
           <Button
             variant="outline"

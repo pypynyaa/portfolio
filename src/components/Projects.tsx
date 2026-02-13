@@ -9,14 +9,15 @@ import { useState } from 'react';
 const ProjectCard = ({ project, index }: { project: any, index: number }) => {
   const { t } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <motion.div
-      initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
-      whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-      transition={shouldReduceMotion ? {} : { duration: 0.5, delay: index * 0.1 }}
-      viewport={shouldReduceMotion ? {} : { once: true, margin: '-50px' }}
+      initial={{ opacity: 0, y: (shouldReduceMotion || isMobile) ? 0 : 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true, margin: '-50px' }}
       className="group bg-card/20 backdrop-blur-md border border-border/40 rounded-2xl overflow-hidden hover:border-foreground/30 transition-all duration-500 flex flex-col h-full shadow-2xl"
     >
       
@@ -131,6 +132,7 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
 const Projects = () => {
   const { t } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   const projects = [
     {
@@ -234,10 +236,10 @@ const Projects = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-24">
           <motion.h2 
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
-            whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-            transition={shouldReduceMotion ? {} : { duration: 0.6 }}
-            viewport={shouldReduceMotion ? {} : { once: true, margin: '-100px' }}
+            initial={{ opacity: 0, y: (shouldReduceMotion || isMobile) ? 0 : 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.6 }}
+            viewport={{ once: true, margin: '-100px' }}
             className="font-display text-4xl md:text-5xl font-bold tracking-tighter uppercase"
           >
             {t('projects.title')}

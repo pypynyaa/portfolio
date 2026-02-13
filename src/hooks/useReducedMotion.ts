@@ -3,21 +3,23 @@ import { useEffect, useState } from 'react';
 /**
  * Хук для определения, нужно ли уменьшить анимации
  * Проверяет:
- * 1. Мобильное устройство (ширина экрана < 768px)
- * 2. prefers-reduced-motion медиа-запрос
+ * 1. prefers-reduced-motion медиа-запрос (полное отключение)
+ * 2. Мобильное устройство (ширина экрана < 768px) - упрощение анимаций
  * 3. User Agent для определения браузеров с плохой производительностью
+ * 
+ * Возвращает объект с двумя флагами:
+ * - shouldReduceMotion: полное отключение (для prefers-reduced-motion)
+ * - shouldSimplifyMotion: упрощение анимаций (для мобильных)
  */
 export function useReducedMotion() {
-  const [shouldReduceMotion, setShouldReduceMotion] = useState(() => {
-    if (typeof window === 'undefined') return false;
+  const [motionState, setMotionState] = useState(() => {
+    if (typeof window === 'undefined') return { shouldReduceMotion: false, shouldSimplifyMotion: false };
     
-    // Проверка prefers-reduced-motion
+    // Проверка prefers-reduced-motion - полное отключение
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return true;
     
-    // Проверка мобильного устройства
+    // Проверка мобильного устройства - упрощение анимаций
     const isMobile = window.innerWidth < 768;
-    if (isMobile) return true;
     
     // Проверка User Agent для браузеров с известными проблемами производительности
     const ua = navigator.userAgent.toLowerCase();
@@ -25,11 +27,12 @@ export function useReducedMotion() {
     const isWeChat = ua.includes('micromessenger');
     const isMobileBrowser = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua);
     
-    if (isTelegramBrowser || isWeChat || (isMobileBrowser && isMobile)) {
-      return true;
-    }
+    const shouldSimplifyMotion = isMobile || isTelegramBrowser || isWeChat || (isMobileBrowser && isMobile);
     
-    return false;
+    return {
+      shouldReduceMotion: prefersReducedMotion,
+      shouldSimplifyMotion: shouldSimplifyMotion && !prefersReducedMotion, // Не упрощаем если уже полностью отключено
+    };
   });
 
   useEffect(() => {
@@ -39,14 +42,36 @@ export function useReducedMotion() {
     const handleResize = () => {
       const isMobile = window.innerWidth < 768;
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      setShouldReduceMotion(isMobile || prefersReducedMotion);
+      
+      const ua = navigator.userAgent.toLowerCase();
+      const isTelegramBrowser = ua.includes('telegram') || ua.includes('webview');
+      const isWeChat = ua.includes('micromessenger');
+      const isMobileBrowser = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua);
+      
+      const shouldSimplifyMotion = isMobile || isTelegramBrowser || isWeChat || (isMobileBrowser && isMobile);
+      
+      setMotionState({
+        shouldReduceMotion: prefersReducedMotion,
+        shouldSimplifyMotion: shouldSimplifyMotion && !prefersReducedMotion,
+      });
     };
 
     // Слушаем изменения prefers-reduced-motion
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const handleMediaChange = (e: MediaQueryListEvent) => {
       const isMobile = window.innerWidth < 768;
-      setShouldReduceMotion(e.matches || isMobile);
+      
+      const ua = navigator.userAgent.toLowerCase();
+      const isTelegramBrowser = ua.includes('telegram') || ua.includes('webview');
+      const isWeChat = ua.includes('micromessenger');
+      const isMobileBrowser = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua);
+      
+      const shouldSimplifyMotion = isMobile || isTelegramBrowser || isWeChat || (isMobileBrowser && isMobile);
+      
+      setMotionState({
+        shouldReduceMotion: e.matches,
+        shouldSimplifyMotion: shouldSimplifyMotion && !e.matches,
+      });
     };
 
     window.addEventListener('resize', handleResize);
@@ -58,5 +83,7 @@ export function useReducedMotion() {
     };
   }, []);
 
-  return shouldReduceMotion;
+  // Возвращаем true только для полного отключения (prefers-reduced-motion)
+  // Для мобильных возвращаем false, чтобы использовать упрощенные анимации
+  return motionState.shouldReduceMotion;
 }

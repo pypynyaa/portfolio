@@ -10,7 +10,8 @@ import {
 const Skills = () => {
   // Вытаскиваем language из контекста
   const { t, language } = useLanguage();
-  const shouldReduceMotion = useReducedMotion(); 
+  const shouldReduceMotion = useReducedMotion();
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768; 
 
   // Оборачиваем в useMemo, чтобы массив пересоздавался при смене языка
   const skills = useMemo(() => [
@@ -24,26 +25,20 @@ const Skills = () => {
     { name: t('skills.design'), icon: <Globe2 size={20} />},
   ], [t, language]); // Зависимости: перевод и язык
 
-  const containerVariants: Variants = shouldReduceMotion ? {
-    hidden: { opacity: 1 },
-    visible: { opacity: 1 },
-  } : {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.05 },
+      transition: (shouldReduceMotion || isMobile) ? {} : { staggerChildren: 0.05 },
     },
   };
 
-  const cardVariants: Variants = shouldReduceMotion ? {
-    hidden: { opacity: 1 },
-    visible: { opacity: 1 },
-  } : {
-    hidden: { y: 20, opacity: 0 },
+  const cardVariants: Variants = {
+    hidden: { y: (shouldReduceMotion || isMobile) ? 0 : 20, opacity: 0 },
     visible: { 
       y: 0, 
       opacity: 1,
-      transition: { type: 'spring', stiffness: 260, damping: 20 }
+      transition: (shouldReduceMotion || isMobile) ? { duration: 0.3 } : { type: 'spring', stiffness: 260, damping: 20 }
     },
   };
 
@@ -53,10 +48,10 @@ const Skills = () => {
         
         <div className="text-center mb-24">
           <motion.h2 
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
-            whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-            transition={shouldReduceMotion ? {} : { duration: 0.6 }}
-            viewport={shouldReduceMotion ? {} : { once: true, margin: '-100px' }}
+            initial={{ opacity: 0, y: (shouldReduceMotion || isMobile) ? 0 : 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.6 }}
+            viewport={{ once: true, margin: '-100px' }}
             className="font-display text-4xl md:text-5xl font-bold mb-6 text-glow uppercase tracking-tighter"
           >
             {t('skills.title')}
@@ -68,7 +63,7 @@ const Skills = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={shouldReduceMotion ? {} : { once: true, margin: '-100px' }}
+          viewport={{ once: true, margin: '-100px' }}
           // Этот key заставляет весь блок перезапускать анимацию при смене языка
           key={language} 
           className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto group/container"
@@ -78,7 +73,7 @@ const Skills = () => {
               // Уникальный ключ для каждой карточки
               key={`${skill.name}-${language}`} 
               variants={cardVariants}
-              whileHover={shouldReduceMotion ? {} : { y: -5, scale: 1.02 }}
+              whileHover={(shouldReduceMotion || isMobile) ? {} : { y: -5, scale: 1.02 }}
               className="relative group transition-all duration-500 hover:!opacity-100 group-hover/container:opacity-40"
             >
               <div className="h-full p-6 rounded-2xl border border-border/40 bg-card/20 backdrop-blur-md flex flex-col items-center justify-center text-center transition-all duration-500 group-hover:border-foreground/30 group-hover:bg-card/40 shadow-sm">

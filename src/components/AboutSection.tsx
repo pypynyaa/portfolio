@@ -131,8 +131,8 @@ const AboutSection = () => {
             <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-[2.2rem] flex flex-col justify-between hover:border-indigo-500/40 transition-all group min-h-[180px]">
               <Tent className="w-6 h-6 text-indigo-400 group-hover:scale-110 transition-transform" />
               <div>
-                <h3 className="text-white font-black uppercase italic tracking-tighter text-lg">{t('aboutSection.inventory.scienceCamp.title')}</h3>
-                <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest mt-1">{t('aboutSection.inventory.scienceCamp.subtitle')}</p>
+                <h3 className="text-white font-black uppercase italic tracking-tighter text-base md:text-lg">{t('aboutSection.inventory.scienceCamp.title')}</h3>
+                <p className="text-slate-600 text-[9px] md:text-[10px] font-bold uppercase tracking-widest mt-1">{t('aboutSection.inventory.scienceCamp.subtitle')}</p>
               </div>
             </div>
 
@@ -140,8 +140,8 @@ const AboutSection = () => {
             <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-[2.2rem] flex flex-col justify-between hover:border-emerald-500/40 transition-all group min-h-[180px]">
               <Dumbbell className="w-6 h-6 text-emerald-400 group-hover:scale-110 transition-transform" />
               <div>
-                <h3 className="text-white font-black uppercase italic tracking-tighter text-lg">{t('aboutSection.inventory.powerlifting.title')}</h3>
-                <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest mt-1">{t('aboutSection.inventory.powerlifting.subtitle')}</p>
+                <h3 className="text-white font-black uppercase italic tracking-tighter text-base md:text-lg">{t('aboutSection.inventory.powerlifting.title')}</h3>
+                <p className="text-slate-600 text-[9px] md:text-[10px] font-bold uppercase tracking-widest mt-1">{t('aboutSection.inventory.powerlifting.subtitle')}</p>
               </div>
             </div>
 
@@ -149,8 +149,8 @@ const AboutSection = () => {
             <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-[2.2rem] flex flex-col justify-between hover:border-amber-500/40 transition-all group min-h-[180px]">
               <Trophy className="w-6 h-6 text-amber-500 group-hover:scale-110 transition-transform" />
               <div>
-                <h3 className="text-white font-black uppercase italic tracking-tighter text-lg">{t('aboutSection.inventory.basketball.title')}</h3>
-                <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest mt-1">{t('aboutSection.inventory.basketball.subtitle')}</p>
+                <h3 className="text-white font-black uppercase italic tracking-tighter text-base md:text-lg">{t('aboutSection.inventory.basketball.title')}</h3>
+                <p className="text-slate-600 text-[9px] md:text-[10px] font-bold uppercase tracking-widest mt-1">{t('aboutSection.inventory.basketball.subtitle')}</p>
               </div>
             </div>
 
@@ -158,8 +158,8 @@ const AboutSection = () => {
             <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-[2.2rem] flex flex-col justify-between hover:border-sky-500/40 transition-all group min-h-[180px]">
               <Globe className="w-6 h-6 text-sky-400 group-hover:scale-110 transition-transform" />
               <div>
-                <h3 className="text-white font-black uppercase italic tracking-tighter text-lg">{t('aboutSection.inventory.travel.title')}</h3>
-                <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest mt-1">{t('aboutSection.inventory.travel.subtitle')}</p>
+                <h3 className="text-white font-black uppercase italic tracking-tighter text-base md:text-lg">{t('aboutSection.inventory.travel.title')}</h3>
+                <p className="text-slate-600 text-[9px] md:text-[10px] font-bold uppercase tracking-widest mt-1">{t('aboutSection.inventory.travel.subtitle')}</p>
               </div>
             </div>
           </div>

@@ -8,6 +8,7 @@ const About = () => {
   const { t } = useLanguage();
   const containerRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   const aboutCards = [
     {
@@ -40,10 +41,10 @@ const About = () => {
         {/* Заголовок - четко по центру */}
         <div className="text-center mb-24">
           <motion.h2 
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
-            whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-            transition={shouldReduceMotion ? {} : { duration: 0.6 }}
-            viewport={shouldReduceMotion ? {} : { once: true, margin: '-100px' }}
+            initial={{ opacity: 0, y: (shouldReduceMotion || isMobile) ? 0 : 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.6 }}
+            viewport={{ once: true, margin: '-100px' }}
             className="font-display text-4xl md:text-5xl font-bold mb-6 text-glow"
           >
             {t('about.title')}
@@ -54,10 +55,10 @@ const About = () => {
         {/* Профиль - центрирование через max-w и mx-auto */}
         <div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20 mb-32">
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9 }}
-            whileInView={shouldReduceMotion ? {} : { opacity: 1, scale: 1 }}
-            transition={shouldReduceMotion ? {} : { duration: 0.8 }}
-            viewport={shouldReduceMotion ? {} : { once: true, margin: '-100px' }}
+            initial={{ opacity: 0, scale: (shouldReduceMotion || isMobile) ? 1 : 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.8 }}
+            viewport={{ once: true, margin: '-100px' }}
             className="relative flex-shrink-0"
           >
             <div className="relative z-10 w-80 h-80 md:w-100 md:h-100 group">
@@ -73,10 +74,10 @@ const About = () => {
           </motion.div>
 
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, x: 20 }}
-            whileInView={shouldReduceMotion ? {} : { opacity: 1, x: 0 }}
-            transition={shouldReduceMotion ? {} : { duration: 0.8 }}
-            viewport={shouldReduceMotion ? {} : { once: true, margin: '-100px' }}
+            initial={{ opacity: 0, x: (shouldReduceMotion || isMobile) ? 0 : 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.8 }}
+            viewport={{ once: true, margin: '-100px' }}
             className="flex-1 text-center lg:text-left space-y-6"
           >
             <div className="inline-block px-4 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-4">
@@ -108,10 +109,10 @@ const About = () => {
           {aboutCards.map((card, index) => (
             <motion.div
               key={card.title}
-              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
-              whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-              transition={shouldReduceMotion ? {} : { duration: 0.5, delay: index * 0.1 }}
-              viewport={shouldReduceMotion ? {} : { once: true, margin: '-50px' }}
+              initial={{ opacity: 0, y: (shouldReduceMotion || isMobile) ? 0 : 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true, margin: '-50px' }}
               className="group p-8 rounded-2xl border border-border/50 bg-card/20 backdrop-blur-md hover:bg-card/40 hover:border-foreground/20 transition-all duration-500"
             >
               <div className="mb-6 text-muted-foreground group-hover:text-foreground transition-colors">
@@ -135,10 +136,10 @@ const About = () => {
             {timeline.map((item, index) => (
               <motion.div
                 key={item.year}
-                initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
-                whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? {} : { duration: 0.5 }}
-                viewport={shouldReduceMotion ? {} : { once: true, margin: '-50px' }}
+                initial={{ opacity: 0, y: (shouldReduceMotion || isMobile) ? 0 : 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.5 }}
+                viewport={{ once: true, margin: '-50px' }}
                 className={`relative mb-12 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:text-right md:ml-[-50%]' : 'md:pl-12 md:ml-0'}`}
               >
                 <div className={`absolute top-1.5 -left-[5px] md:left-auto md:right-[-5px] w-2.5 h-2.5 rounded-full bg-foreground/20 border border-background z-20 ${index % 2 !== 0 ? 'md:left-[-5px]' : ''}`} />

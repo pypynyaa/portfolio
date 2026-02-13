@@ -12,9 +12,9 @@ const Header = () => {
 
   const navItems = [
     { name: t('nav.home'), id: 'home' },
+    { name: t('nav.about'), id: 'about' },
     { name: t('nav.skills'), id: 'skills' },
     { name: t('nav.projects'), id: 'projects' },
-    { name: t('nav.about'), id: 'about' },
     { name: t('nav.contacts'), id: 'contacts' },
   ];
 

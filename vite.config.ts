@@ -6,7 +6,7 @@ import path from "path";
 export default defineConfig(({ mode }) => ({
   // Добавляем base, чтобы пути к файлам в сборке были относительными
   // Название 'portfolio' должно точно совпадать с названием репозитория на GitHub
-  base: "/portfolio/", 
+  base: "/", 
   
   server: {
     host: "::",

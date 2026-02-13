@@ -2,19 +2,21 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { useState } from 'react';
 
 // Компонент одной карточки
 const ProjectCard = ({ project, index }: { project: any, index: number }) => {
   const { t } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      viewport={{ once: true }}
+      initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
+      whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+      transition={shouldReduceMotion ? {} : { duration: 0.5, delay: index * 0.1 }}
+      viewport={shouldReduceMotion ? {} : { once: true, margin: '-50px' }}
       className="group bg-card/20 backdrop-blur-md border border-border/40 rounded-2xl overflow-hidden hover:border-foreground/30 transition-all duration-500 flex flex-col h-full shadow-2xl"
     >
       
@@ -26,20 +28,22 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
         <AnimatePresence>
           {!isLoaded && (
             <motion.div 
-              exit={{ opacity: 0, scale: 1.1 }}
-              transition={{ duration: 0.8, ease: "circOut" }}
+              exit={shouldReduceMotion ? {} : { opacity: 0, scale: 1.1 }}
+              transition={shouldReduceMotion ? {} : { duration: 0.8, ease: "circOut" }}
               className="absolute inset-0 flex flex-col items-center justify-center z-30 bg-[#050505]"
             >
-              <motion.div 
-                className="absolute inset-0 z-10 pointer-events-none"
-                initial={{ top: "-100%" }}
-                animate={{ top: "100%" }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                style={{ 
-                  background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.05), transparent)',
-                  height: '20%' 
-                }}
-              />
+              {!shouldReduceMotion && (
+                <motion.div 
+                  className="absolute inset-0 z-10 pointer-events-none"
+                  initial={{ top: "-100%" }}
+                  animate={{ top: "100%" }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                  style={{ 
+                    background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.05), transparent)',
+                    height: '20%' 
+                  }}
+                />
+              )}
               <div className="relative z-20 flex flex-col items-center">
                 <div className="relative mb-4">
                   <div className="absolute inset-0 blur-md bg-white/10 animate-pulse" />
@@ -50,14 +54,16 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
                     {t('projects.preview')}
                   </span>
                 </div>
-                <div className="w-32 h-[2px] bg-white/5 mt-6 relative overflow-hidden rounded-full">
-                  <motion.div 
-                    className="absolute inset-y-0 left-0 bg-white/40"
-                    initial={{ width: "0%" }}
-                    animate={{ width: "100%" }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  />
-                </div>
+                {!shouldReduceMotion && (
+                  <div className="w-32 h-[2px] bg-white/5 mt-6 relative overflow-hidden rounded-full">
+                    <motion.div 
+                      className="absolute inset-y-0 left-0 bg-white/40"
+                      initial={{ width: "0%" }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                  </div>
+                )}
               </div>
             </motion.div>
           )}
@@ -124,6 +130,7 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
 
 const Projects = () => {
   const { t } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
 
   const projects = [
     {
@@ -227,9 +234,10 @@ const Projects = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-24">
           <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+            whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+            transition={shouldReduceMotion ? {} : { duration: 0.6 }}
+            viewport={shouldReduceMotion ? {} : { once: true, margin: '-100px' }}
             className="font-display text-4xl md:text-5xl font-bold tracking-tighter uppercase"
           >
             {t('projects.title')}

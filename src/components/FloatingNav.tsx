@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Home, User, Code, FolderGit2, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 const FloatingNav: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { t, language } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
 
   const navItems = React.useMemo(() => [
     { name: t('nav.home'), id: 'home', icon: Home },
@@ -17,7 +19,17 @@ const FloatingNav: React.FC = () => {
   ], [t, language]);
 
   useEffect(() => {
-    const handleScroll = () => setIsVisible(window.scrollY > 200);
+    // Throttle scroll для лучшей производительности на мобильных
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setIsVisible(window.scrollY > 200);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -25,13 +37,16 @@ const FloatingNav: React.FC = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: shouldReduceMotion ? 'auto' : 'smooth' });
       setIsOpen(false);
       window.history.pushState(null, '', `#/${id}`);
     }
   };
 
-  const sidebarVariants: Variants = {
+  const sidebarVariants: Variants = shouldReduceMotion ? {
+    closed: { x: '-100%', transition: { duration: 0.2 } },
+    opened: { x: 0, transition: { duration: 0.2 } }
+  } : {
     closed: { x: '-100%' },
     opened: { x: 0 }
   };
@@ -55,7 +70,7 @@ const FloatingNav: React.FC = () => {
             initial="closed"
             animate={isOpen ? "opened" : "closed"}
             exit="closed"
-            transition={{ type: 'spring', stiffness: 300, damping: 35 }}
+            transition={shouldReduceMotion ? { duration: 0.2 } : { type: 'spring', stiffness: 300, damping: 35 }}
             className="fixed left-0 top-0 bottom-0 w-[280px] bg-background/90 backdrop-blur-2xl border-r border-white/10 z-[90] flex flex-col shadow-2xl"
           >
             <button

@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
 import { Send, Instagram, Github, MessageCircle, Mail, ExternalLink } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 const Contacts = () => {
   const { t } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
 
   const contacts = [
     { 
@@ -54,10 +56,10 @@ const Contacts = () => {
     <section id="contacts" className="py-24 relative z-10">
       <div className="container mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 50 }}
+          whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+          transition={shouldReduceMotion ? {} : { duration: 0.6 }}
+          viewport={shouldReduceMotion ? {} : { once: true, margin: '-100px' }}
           className="text-center mb-16"
         >
           <h2 className="font-display text-3xl md:text-4xl font-bold text-glow">
@@ -75,12 +77,12 @@ const Contacts = () => {
               href={contact.href}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 30, rotateX: -15 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02, y: -5 }}
-              whileTap={{ scale: 0.98 }}
+              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30, rotateX: -15 }}
+              whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0, rotateX: 0 }}
+              transition={shouldReduceMotion ? {} : { duration: 0.5, delay: index * 0.1 }}
+              viewport={shouldReduceMotion ? {} : { once: true, margin: '-50px' }}
+              whileHover={shouldReduceMotion ? {} : { scale: 1.02, y: -5 }}
+              whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
               className="group relative overflow-hidden rounded-2xl bg-secondary/70 backdrop-blur-md border border-border/30 p-6 transition-all duration-500"
             >
               {/* Gradient background on hover */}

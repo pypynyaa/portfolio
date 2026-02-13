@@ -12,9 +12,9 @@ const FloatingNav: React.FC = () => {
 
   const navItems = React.useMemo(() => [
     { name: t('nav.home'), id: 'home', icon: Home },
-    { name: t('nav.about'), id: 'about', icon: User },
     { name: t('nav.skills'), id: 'skills', icon: Code },
     { name: t('nav.projects'), id: 'projects', icon: FolderGit2 },
+    { name: t('nav.about'), id: 'about', icon: User },
     { name: t('nav.contacts'), id: 'contacts', icon: Globe },
   ], [t, language]);
 

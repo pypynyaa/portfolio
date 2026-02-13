@@ -6,7 +6,6 @@ import { useReducedMotion } from '@/hooks/useReducedMotion';
 const Hero = () => {
   const { t } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   // Функция для плавного перехода к проектам
   const scrollToProjects = () => {
@@ -25,9 +24,9 @@ const Hero = () => {
     >
       <div className="text-center z-10">
         <motion.h1
-          initial={{ opacity: 0, y: (shouldReduceMotion || isMobile) ? 0 : 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.8, delay: 0.2 }}
+          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
+          animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+          transition={shouldReduceMotion ? {} : { duration: 0.8, delay: 0.2 }}
           className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-wider mb-6 text-glow-strong"
         >
           pypynya

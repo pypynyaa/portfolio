@@ -10,8 +10,7 @@ import {
 const Skills = () => {
   // Вытаскиваем language из контекста
   const { t, language } = useLanguage();
-  const shouldReduceMotion = useReducedMotion();
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768; 
+  const shouldReduceMotion = useReducedMotion(); 
 
   // Оборачиваем в useMemo, чтобы массив пересоздавался при смене языка
   const skills = useMemo(() => [
@@ -29,16 +28,16 @@ const Skills = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: (shouldReduceMotion || isMobile) ? {} : { staggerChildren: 0.05 },
+      transition: shouldReduceMotion ? {} : { staggerChildren: 0.05 },
     },
   };
 
   const cardVariants: Variants = {
-    hidden: { y: (shouldReduceMotion || isMobile) ? 0 : 20, opacity: 0 },
-    visible: { 
+    hidden: shouldReduceMotion ? { opacity: 1 } : { y: 20, opacity: 0 },
+    visible: shouldReduceMotion ? { opacity: 1 } : { 
       y: 0, 
       opacity: 1,
-      transition: (shouldReduceMotion || isMobile) ? { duration: 0.3 } : { type: 'spring', stiffness: 260, damping: 20 }
+      transition: { type: 'spring', stiffness: 260, damping: 20 }
     },
   };
 
@@ -48,9 +47,9 @@ const Skills = () => {
         
         <div className="text-center mb-24">
           <motion.h2 
-            initial={{ opacity: 0, y: (shouldReduceMotion || isMobile) ? 0 : 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.6 }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+            whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+            transition={shouldReduceMotion ? {} : { duration: 0.6 }}
             viewport={{ once: true, margin: '-100px' }}
             className="font-display text-4xl md:text-5xl font-bold mb-6 text-glow uppercase tracking-tighter"
           >
@@ -73,7 +72,7 @@ const Skills = () => {
               // Уникальный ключ для каждой карточки
               key={`${skill.name}-${language}`} 
               variants={cardVariants}
-              whileHover={(shouldReduceMotion || isMobile) ? {} : { y: -5, scale: 1.02 }}
+              whileHover={shouldReduceMotion ? {} : { y: -5, scale: 1.02 }}
               className="relative group transition-all duration-500 hover:!opacity-100 group-hover/container:opacity-40"
             >
               <div className="h-full p-6 rounded-2xl border border-border/40 bg-card/20 backdrop-blur-md flex flex-col items-center justify-center text-center transition-all duration-500 group-hover:border-foreground/30 group-hover:bg-card/40 shadow-sm">

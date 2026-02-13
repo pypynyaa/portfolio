@@ -8,7 +8,6 @@ const About = () => {
   const { t } = useLanguage();
   const containerRef = useRef(null);
   const shouldReduceMotion = useReducedMotion();
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   const aboutCards = [
     {
@@ -41,9 +40,9 @@ const About = () => {
         {/* Заголовок - четко по центру */}
         <div className="text-center mb-24">
           <motion.h2 
-            initial={{ opacity: 0, y: (shouldReduceMotion || isMobile) ? 0 : 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.6 }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+            whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+            transition={shouldReduceMotion ? {} : { duration: 0.6 }}
             viewport={{ once: true, margin: '-100px' }}
             className="font-display text-4xl md:text-5xl font-bold mb-6 text-glow"
           >
@@ -55,9 +54,9 @@ const About = () => {
         {/* Профиль - центрирование через max-w и mx-auto */}
         <div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20 mb-32">
           <motion.div
-            initial={{ opacity: 0, scale: (shouldReduceMotion || isMobile) ? 1 : 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.8 }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9 }}
+            whileInView={shouldReduceMotion ? {} : { opacity: 1, scale: 1 }}
+            transition={shouldReduceMotion ? {} : { duration: 0.8 }}
             viewport={{ once: true, margin: '-100px' }}
             className="relative flex-shrink-0"
           >
@@ -74,9 +73,9 @@ const About = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: (shouldReduceMotion || isMobile) ? 0 : 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.8 }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, x: 20 }}
+            whileInView={shouldReduceMotion ? {} : { opacity: 1, x: 0 }}
+            transition={shouldReduceMotion ? {} : { duration: 0.8 }}
             viewport={{ once: true, margin: '-100px' }}
             className="flex-1 text-center lg:text-left space-y-6"
           >
@@ -109,9 +108,9 @@ const About = () => {
           {aboutCards.map((card, index) => (
             <motion.div
               key={card.title}
-              initial={{ opacity: 0, y: (shouldReduceMotion || isMobile) ? 0 : 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.5, delay: index * 0.1 }}
+              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+              whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+              transition={shouldReduceMotion ? {} : { duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true, margin: '-50px' }}
               className="group p-8 rounded-2xl border border-border/50 bg-card/20 backdrop-blur-md hover:bg-card/40 hover:border-foreground/20 transition-all duration-500"
             >

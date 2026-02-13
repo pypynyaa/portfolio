@@ -1,22 +1,19 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, Globe } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ExternalLink, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
-import { useState } from 'react';
 
 // Компонент одной карточки
 const ProjectCard = ({ project, index }: { project: any, index: number }) => {
   const { t } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: (shouldReduceMotion || isMobile) ? 0 : 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.5, delay: index * 0.1 }}
+      initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
+      whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+      transition={shouldReduceMotion ? {} : { duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true, margin: '-50px' }}
       className="group bg-card/20 backdrop-blur-md border border-border/40 rounded-2xl overflow-hidden hover:border-foreground/30 transition-all duration-500 flex flex-col h-full shadow-2xl"
     >
@@ -26,68 +23,20 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
       <div className="relative aspect-video bg-[#050505] overflow-hidden group/canvas">
         <div className="absolute inset-0 z-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:15px_15px]" />
 
-        <AnimatePresence>
-          {!isLoaded && (
-            <motion.div 
-              exit={shouldReduceMotion ? {} : { opacity: 0, scale: 1.1 }}
-              transition={shouldReduceMotion ? {} : { duration: 0.8, ease: "circOut" }}
-              className="absolute inset-0 flex flex-col items-center justify-center z-30 bg-[#050505]"
-            >
-              {!shouldReduceMotion && (
-                <motion.div 
-                  className="absolute inset-0 z-10 pointer-events-none"
-                  initial={{ top: "-100%" }}
-                  animate={{ top: "100%" }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                  style={{ 
-                    background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.05), transparent)',
-                    height: '20%' 
-                  }}
-                />
-              )}
-              <div className="relative z-20 flex flex-col items-center">
-                <div className="relative mb-4">
-                  <div className="absolute inset-0 blur-md bg-white/10 animate-pulse" />
-                  <Globe size={24} className="text-white relative z-10 opacity-80" />
-                </div>
-                <div className="text-center space-y-1">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-white/60 block">
-                    {t('projects.preview')}
-                  </span>
-                </div>
-                {!shouldReduceMotion && (
-                  <div className="w-32 h-[2px] bg-white/5 mt-6 relative overflow-hidden rounded-full">
-                    <motion.div 
-                      className="absolute inset-y-0 left-0 bg-white/40"
-                      initial={{ width: "0%" }}
-                      animate={{ width: "100%" }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                    />
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         {project.image ? (
           // ВСТАВКА КАРТИНКИ
           <img
             src={project.image}
             alt={project.title}
-            className={`w-full h-full object-cover transition-all duration-1000 
-              ${isLoaded ? 'opacity-40 grayscale group-hover/canvas:opacity-100 group-hover/canvas:grayscale-0 scale-100' : 'opacity-0'}`}
-            onLoad={() => setIsLoaded(true)}
+            className="w-full h-full object-cover opacity-40 grayscale group-hover/canvas:opacity-100 group-hover/canvas:grayscale-0 transition-all duration-1000"
           />
         ) : (
           // ОСТАВЛЯЕМ IFRAME ДЛЯ ТЕХ, ГДЕ НЕТ ФОТО
           <iframe
             src={project.link}
-            className={`border-none transition-all duration-1000 origin-top-left
+            className={`border-none transition-all duration-1000 origin-top-left opacity-40 grayscale group-hover/canvas:opacity-100 group-hover/canvas:grayscale-0
               ${project.isVideo ? 'w-full h-full scale-100' : 'w-[200%] h-[200%] scale-[0.5]'}
-              ${isLoaded ? 'opacity-40 grayscale group-hover/canvas:opacity-100 group-hover/canvas:grayscale-0' : 'opacity-0'}
             `}
-            onLoad={() => setIsLoaded(true)}
             title={project.title}
           />
         )}
@@ -132,7 +81,6 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
 const Projects = () => {
   const { t } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   const projects = [
     {
@@ -140,7 +88,6 @@ const Projects = () => {
       subtitle: t('projects.aspera.subtitle'),
       description: t('projects.aspera.description'),
       image: "./IMG_9930.JPG",
-      displayUrl: 'aspera.school/preview',
       links: [
         { label: t('projects.links.frontend'), url: 'https://github.com/patewy/aspera-project', type: 'github' },
         { label: t('projects.links.backend'), url: 'https://github.com/pypynyaa/aspera', type: 'github' },
@@ -152,7 +99,6 @@ const Projects = () => {
       subtitle: t('projects.itmolab.subtitle'),
       description: t('projects.itmolab.description'),
       image: "./IMG_9918.JPG",
-      link: 'https://drive.google.com/file/d/1zGxuz75YISKIbAlKVZ-rNv_NLuXO8OiJ/preview',
       links: [
         { label: t('projects.site'), url: 'https://se.ifmo.ru/courses/programming#labs', type: 'site' },
         { label: 'GitHub', url: 'https://github.com/pypynyaa/itmo.java', type: 'github' },
@@ -236,9 +182,9 @@ const Projects = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-24">
           <motion.h2 
-            initial={{ opacity: 0, y: (shouldReduceMotion || isMobile) ? 0 : 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={(shouldReduceMotion || isMobile) ? { duration: 0.3 } : { duration: 0.6 }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+            whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+            transition={shouldReduceMotion ? {} : { duration: 0.6 }}
             viewport={{ once: true, margin: '-100px' }}
             className="font-display text-4xl md:text-5xl font-bold tracking-tighter uppercase"
           >

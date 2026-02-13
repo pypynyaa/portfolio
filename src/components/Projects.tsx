@@ -47,7 +47,7 @@ const ProjectCard = ({ project, index }: { project: any, index: number }) => {
                 </div>
                 <div className="text-center space-y-1">
                   <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-white/60 block">
-                    {t('projects.preview') || 'Initializing Stream'}
+                    {t('projects.preview')}
                   </span>
                 </div>
                 <div className="w-32 h-[2px] bg-white/5 mt-6 relative overflow-hidden rounded-full">
@@ -128,96 +128,96 @@ const Projects = () => {
   const projects = [
     {
       title: "Aspera",
-      subtitle: "Web-based School Ecosystem",
-      description: "Экосистема для школ - в разработке. Современный интерфейс для образовательных учреждений.",
+      subtitle: t('projects.aspera.subtitle'),
+      description: t('projects.aspera.description'),
       image: "./IMG_9930.JPG",
       displayUrl: 'aspera.school/preview',
       links: [
-        { label: 'Frontend', url: 'https://github.com/patewy/aspera-project', type: 'github' },
-        { label: 'Backend', url: 'https://github.com/pypynyaa/aspera', type: 'github' },
-        { label: 'Docs', url: 'https://drive.google.com/file/d/1KmEYPetPSxfUKFDy5L0AV2Dmt9sQkil-/view?usp=sharing', type: ' ' },
+        { label: t('projects.links.frontend'), url: 'https://github.com/patewy/aspera-project', type: 'github' },
+        { label: t('projects.links.backend'), url: 'https://github.com/pypynyaa/aspera', type: 'github' },
+        { label: t('projects.links.docs'), url: 'https://drive.google.com/file/d/1KmEYPetPSxfUKFDy5L0AV2Dmt9sQkil-/view?usp=sharing', type: ' ' },
       ]
     },
     {
       title: "ITMOLAB",
-      subtitle: "University Lab Works",
-      description: "Лабораторные работы университета ИТМО. Заполняется.",
+      subtitle: t('projects.itmolab.subtitle'),
+      description: t('projects.itmolab.description'),
       image: "./IMG_9918.JPG",
       link: 'https://drive.google.com/file/d/1zGxuz75YISKIbAlKVZ-rNv_NLuXO8OiJ/preview',
       links: [
-        { label: t('projects.site') || 'Visit', url: 'https://se.ifmo.ru/courses/programming#labs', type: 'site' },
+        { label: t('projects.site'), url: 'https://se.ifmo.ru/courses/programming#labs', type: 'site' },
         { label: 'GitHub', url: 'https://github.com/pypynyaa/itmo.java', type: 'github' },
       ]
     },
     {
       title: "Sibyriak",
-      subtitle: "E-commerce",
-      description: "Сайт растущей базы отдыха в Сибири. Интуитивный интерфейс для бронирования и информации.",
+      subtitle: t('projects.sibyriak.subtitle'),
+      description: t('projects.sibyriak.description'),
       link: 'https://sibyriak.ru',
       links: [
-        { label: t('projects.site') || 'Visit', url: 'https://sibyriak.ru', type: 'site' },
+        { label: t('projects.site'), url: 'https://sibyriak.ru', type: 'site' },
         { label: 'GitHub', url: 'https://github.com/pypynyaa/sibyriak', type: 'github' },
       ]
     },
     {
       title: "Party Deanysus",
-      subtitle: "Event Landing",
-      description: "Яркий и динамичный промо-сайт для мероприятий.",
+      subtitle: t('projects.party.subtitle'),
+      description: t('projects.party.description'),
       link: 'https://pypynyaa.github.io/party-deanysus/',
       links: [
-        { label: t('projects.site') || 'Visit', url: 'https://pypynyaa.github.io/party-deanysus/', type: 'site' },
+        { label: t('projects.site'), url: 'https://pypynyaa.github.io/party-deanysus/', type: 'site' },
         { label: 'GitHub', url: 'https://github.com/pypynyaa/party-deanysus', type: 'github' },
       ]
     },
     {
       title: "Legion Almaz",
-      subtitle: "Industrial Landing",
-      description: "Специализированный сайт для услуг алмазного бурения.",
+      subtitle: t('projects.legion.subtitle'),
+      description: t('projects.legion.description'),
       link: 'https://pypynyaa.github.io/LegionAlmaz/',
       links: [
-        { label: t('projects.site') || 'Visit', url: 'https://pypynyaa.github.io/LegionAlmaz/', type: 'site' },
+        { label: t('projects.site'), url: 'https://pypynyaa.github.io/LegionAlmaz/', type: 'site' },
         { label: 'GitHub', url: 'https://github.com/pypynyaa/LegionAlmaz', type: 'github' },
       ]
     },
         {
       title: "My company site",
-      subtitle: "Corporate Website",
-      description: "Сайт для хранения воспоминаний компании с современным дизайном.",
+      subtitle: t('projects.company.subtitle'),
+      description: t('projects.company.description'),
       link: 'https://pypynyaa.github.io/my_company_site/',
       links: [
-        { label: t('projects.site') || 'Visit', url: 'https://pypynyaa.github.io/my_company_site/', type: 'site' },
+        { label: t('projects.site'), url: 'https://pypynyaa.github.io/my_company_site/', type: 'site' },
         { label: 'GitHub', url: 'https://github.com/pypynyaa/my_company_site', type: 'github' },
       ]
     },
     {
       title: "Blok Lending",
-      subtitle: "Modern Landing Page",
-      description: "Минималистичный лендинг с акцентом на типографику. ",
+      subtitle: t('projects.blok.subtitle'),
+      description: t('projects.blok.description'),
       link: 'https://pypynyaa.github.io/blok-lending/',
       links: [
-        { label: t('projects.site') || 'Visit', url: 'https://pypynyaa.github.io/blok-lending/', type: 'site' },
+        { label: t('projects.site'), url: 'https://pypynyaa.github.io/blok-lending/', type: 'site' },
         { label: 'GitHub', url: 'https://github.com/pypynyaa/blok-lending', type: 'github' },
       ]
     },
     {
       title: "SpecByr",
-      subtitle: "Engineering",
-      description: "Специализированный сайт для услуг алмазного бурения.",
+      subtitle: t('projects.specbyr.subtitle'),
+      description: t('projects.specbyr.description'),
       image: "./IMG_9932.JPG",
       link: 'http://specbyr.ru',
       links: [
-        { label: t('projects.site') || 'Visit', url: 'http://specbyr.ru', type: 'site' },
+        { label: t('projects.site'), url: 'http://specbyr.ru', type: 'site' },
         { label: 'GitHub', url: 'https://github.com/pypynyaa/almaz', type: 'github' },
       ]
     },
     {
       title: "ProfHub",
-      subtitle: "Professional Testing Hub",
-      description: "Специализированный хаб для проверки профпригодности.",
+      subtitle: t('projects.profhub.subtitle'),
+      description: t('projects.profhub.description'),
       image: "./IMG_9931.JPG",
       link: 'https://pypynyaa.github.io/LegionAlmaz/',
       links: [
-        { label: 'Github', url: 'https://github.com/pypynyaa/ProfHub', type: 'github' },
+        { label: 'GitHub', url: 'https://github.com/pypynyaa/ProfHub', type: 'github' },
       ]
     },
   ];

@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, ReactNode, useCallback, useMemo, useEffect } from 'react';
-
-type Language = 'ru' | 'en';
+import { translations, type Language } from '@/i18n/messages';
 
 interface LanguageContextType {
   language: Language;
@@ -8,143 +7,56 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
-const translations = {
-  ru: {
-    // Navigation
-    'nav.home': 'Главная',
-    'nav.about': 'Обо мне',
-    'nav.skills': 'Навыки',
-    'nav.projects': 'Проекты',
-    'nav.contacts': 'Контакты',
-
-    // Hero
-    'hero.role': 'fullstack разработчик',
-    'hero.cta': 'Мои проекты',
-
-    // About
-    'about.title': 'Обо мне',
-    'about.role1': 'Разработчик',
-    'about.role2': 'Full Stack',
-    'about.years': '2023 - н.в.',
-    'about.path.title': 'Мой путь',
-    'about.path.content': 'Начал путь в веб-разработке в 2023 году, самоучкой изучая HTML и CSS. К 2025 году освоил React и начал работать над реальными проектами. Сегодня сочетаю фронтенд с бэкендом для fullstack решений.',
-    'about.passion.title': 'Мои страсти',
-    'about.passion.content': 'Люблю минимализм в дизайне, неоновые эффекты и плавные анимации. Вдохновляюсь cyberpunk и нуар-эстетикой. Люблю экспериментировать с новыми фреймворками и языками программирования.',
-    'about.goals.title': 'Мои цели',
-    'about.goals.content': 'Стремлюсь к созданию инновационных интерфейсов для образования. Цель — разработать интуитивно понятный и приятный интерфейс, который будет понятен даже детям.',
-    'about.timeline.2023': 'Начал изучение веб-разработки, освоив HTML, CSS и JavaScript, заложив фундамент для будущих проектов.',
-    'about.timeline.2024': 'Начал первый крупный проект на React, погрузился в Python и базы данных, освоив PostgreSQL для создания масштабируемых приложений.',
-    'about.timeline.2025': 'Стал фрилансером, расширил технологический стек до Java и PHP, работая над разнообразными проектами.',
-    'about.history': 'Моя история',
-    // Skills
-    'skills.title': 'Навыки',
-    'skills.design': 'UI/UX Дизайн',
-
-    // Projects
-    'projects.title': 'Проекты',
-    'projects.site': 'Сайт',
-    'projects.1.title': 'Cyber Landing',
-    'projects.1.subtitle': 'Неоновый лендинг',
-    'projects.1.description': 'Лендинг с неоновой темой, созданный с использованием vanilla JavaScript и CSS. Реализованы динамичные анимации и минималистичный дизайн.',
-    'projects.2.title': 'Portfolio Hub',
-    'projects.2.subtitle': 'Интерактивное портфолио',
-    'projects.2.description': 'Динамическое портфолио на React и Tailwind CSS. Акцент на UX и плавные анимации для демонстрации проектов.',
-    'projects.3.title': 'CRM System',
-    'projects.3.subtitle': 'Веб-приложение CRM',
-    'projects.3.description': 'CRM-система на Node.js и PostgreSQL. Оптимизирована для управления клиентскими данными с интуитивным интерфейсом.',
-    'projects.4.title': 'E-Shop',
-    'projects.4.subtitle': 'E-commerce платформа',
-    'projects.4.description': 'Интернет-магазин на PHP и MySQL. Интегрированы платежные системы и адаптивный дизайн.',
-    'projects.5.title': 'Mobile App',
-    'projects.5.subtitle': 'Мобильное приложение',
-    'projects.5.description': 'Гибридное приложение на React Native. Фокус на производительность и современный UI/UX.',
-    'projects.6.title': 'Analytics Dash',
-    'projects.6.subtitle': 'Дашборд аналитики',
-    'projects.6.description': 'Интерактивный дашборд на Python и Django. Визуализация данных через Chart.js.',
-
-    // Contacts
-    'contacts.title': 'Мои соцсети',
-    'contacts.subtitle': 'Свяжитесь со мной любым удобным способом',
-    'contacts.telegram.channel': 'Telegram Канал',
-
-    // Footer
-    'footer.rights': 'Все права защищены.',
-  },
-  en: {
-    // Navigation
-    'nav.home': 'Home',
-    'nav.about': 'About',
-    'nav.skills': 'Skills',
-    'nav.projects': 'Projects',
-    'nav.contacts': 'Contacts',
-
-    // Hero
-    'hero.role': 'Frontend Developer / UI/UX Designer',
-    'hero.cta': 'My Projects',
-
-    // About
-    'about.title': 'About Me',
-    'about.role1': 'Developer',
-    'about.role2': 'Full Stack Developer',
-    'about.years': '2023 - present',
-    'about.path.title': 'My Journey',
-    'about.path.content': 'Started my web development journey in 2023, self-learning HTML and CSS. By 2025, I mastered React and began working on real projects. Today, I combine frontend and backend skills for fullstack solutions.',
-    'about.passion.title': 'My Passions',
-    'about.passion.content': 'I love minimalism in design, neon effects, and smooth animations. Inspired by cyberpunk and noir aesthetics. I enjoy experimenting with new frameworks and programming languages.',
-    'about.goals.title': 'My Goals',
-    'about.goals.content': 'I aim to create innovative interfaces for education. My goal is to develop an intuitive and enjoyable interface that is easy to understand, even for children.',  
-    'about.history': 'My Story',
-    'about.timeline.2023': 'Began learning web development, mastering HTML, CSS, and JavaScript, laying the foundation for future projects.',
-    'about.timeline.2024': 'Started first major project in React, delved into Python and databases, mastering PostgreSQL for building scalable applications.',
-    'about.timeline.2025': 'Became a freelancer, expanded tech stack to Java and PHP, working on diverse projects.',
-
-    // Skills
-    'skills.title': 'Skills',
-    'skills.design': 'UI/UX Design',
-
-    // Projects
-    'projects.title': 'Projects',
-    'projects.site': 'Website',
-    'projects.1.title': 'Cyber Landing',
-    'projects.1.subtitle': 'Neon Landing Page',
-    'projects.1.description': 'Landing page with neon theme, created using vanilla JavaScript and CSS. Features dynamic animations and minimalist design.',
-    'projects.2.title': 'Portfolio Hub',
-    'projects.2.subtitle': 'Interactive Portfolio',
-    'projects.2.description': 'Dynamic portfolio on React and Tailwind CSS. Focus on UX and smooth animations for project showcase.',
-    'projects.3.title': 'CRM System',
-    'projects.3.subtitle': 'CRM Web Application',
-    'projects.3.description': 'CRM system on Node.js and PostgreSQL. Optimized for client data management with intuitive interface.',
-    'projects.4.title': 'E-Shop',
-    'projects.4.subtitle': 'E-commerce Platform',
-    'projects.4.description': 'Online store on PHP and MySQL. Integrated payment systems and responsive design.',
-    'projects.5.title': 'Mobile App',
-    'projects.5.subtitle': 'Mobile Application',
-    'projects.5.description': 'Hybrid application on React Native. Focus on performance and modern UI/UX.',
-    'projects.6.title': 'Analytics Dash',
-    'projects.6.subtitle': 'Analytics Dashboard',
-    'projects.6.description': 'Interactive dashboard on Python and Django. Data visualization through Chart.js.',
-
-    // Contacts
-    'contacts.title': 'My Social Media',
-    'contacts.telegram.channel': 'Telegram Channel',
-    'contacts.subtitle': 'Contact me in any convenient way',
-
-    // Footer
-    'footer.rights': 'All rights reserved.',
-  },
-};
-
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('ru');
+  const [language, setLanguageState] = useState<Language>(() => {
+    if (typeof window === 'undefined') return 'en';
+    try {
+      const saved = window.localStorage.getItem('language');
+      return saved === 'ru' || saved === 'en' ? saved : 'en';
+    } catch {
+      return 'en';
+    }
+  });
+
+  const setLanguage = useCallback((lang: Language) => {
+    setLanguageState(lang);
+    try {
+      window.localStorage.setItem('language', lang);
+    } catch {
+      // ignore
+    }
+  }, []);
 
   const t = useCallback((key: string): string => {
-    // Выбираем словарь для текущего языка
     const currentDict = translations[language];
-    // Проверяем наличие ключа, если нет — возвращаем сам ключ
-    return (currentDict as any)[key] || key;
-  }, [language]); // Важно: t обновляется при смене языка
+    return currentDict[key] ?? translations.en[key] ?? key;
+  }, [language]);
+
+  useEffect(() => {
+    // HTML lang
+    document.documentElement.lang = t('head.lang') || language;
+
+    // Title
+    const title = t('head.title');
+    if (title) document.title = title;
+
+    // Meta helpers
+    const setMetaContent = (selector: string, value: string) => {
+      const el = document.querySelector<HTMLMetaElement>(selector);
+      if (el) el.setAttribute('content', value);
+    };
+
+    const description = t('head.description');
+    if (description) setMetaContent('meta[name="description"]', description);
+
+    const ogTitle = t('head.ogTitle');
+    if (ogTitle) setMetaContent('meta[property="og:title"]', ogTitle);
+
+    const ogDescription = t('head.ogDescription');
+    if (ogDescription) setMetaContent('meta[property="og:description"]', ogDescription);
+  }, [language, t]);
 
   const value = useMemo(() => ({ 
     language, 

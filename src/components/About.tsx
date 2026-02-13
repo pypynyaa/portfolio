@@ -75,15 +75,14 @@ const About = () => {
             className="flex-1 text-center lg:text-left space-y-6"
           >
             <div className="inline-block px-4 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-4">
-              Hello, I'm Nikita Nigmatchanov
+              {t('about.greeting')}
             </div>
             <h3 className="font-display text-3xl md:text-4xl font-bold leading-tight uppercase tracking-tight">
               {t('about.role1')} <br />
               <span className="text-muted-foreground font-light">{t('about.role2')}</span>
             </h3>
             <p className="text-base text-muted-foreground max-w-lg mx-auto lg:mx-0 leading-relaxed">
-              В данный момент проживаю в Санкт-Петербурге, Россия. 
-              Увлекаюсь созданием современных веб-приложений с акцентом на производительность и пользовательский опыт.
+              {t('about.location')}
             </p>
             <div className="flex justify-center lg:justify-start gap-8 pt-4">
               <div className="flex flex-col">
@@ -93,7 +92,7 @@ const About = () => {
               <div className="w-px h-10 bg-border/50" />
               <div className="flex flex-col">
                 <span className="text-2xl font-bold italic tracking-tighter">10+</span>
-                <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Projects</span>
+                <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{t('about.projectsLabel')}</span>
               </div>
             </div>
           </motion.div>

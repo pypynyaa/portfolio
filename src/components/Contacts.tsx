@@ -64,7 +64,7 @@ const Contacts = () => {
             {t('contacts.title')}
           </h2>
           <p className="text-muted-foreground mt-4 max-w-md mx-auto">
-            {t('contacts.subtitle') || 'Свяжитесь со мной любым удобным способом'}
+            {t('contacts.subtitle')}
           </p>
         </motion.div>
 

@@ -69,7 +69,7 @@ const FloatingNav: React.FC = () => {
 
             <div className="flex-1 py-12 px-6 overflow-y-auto">
               <div className="mb-10 ml-4">
-                <h2 className="text-[10px] text-muted-foreground uppercase tracking-[0.4em] font-bold opacity-50">Navigate</h2>
+                <h2 className="text-[10px] text-muted-foreground uppercase tracking-[0.4em] font-bold opacity-50">{t('floatingNav.navigate')}</h2>
               </div>
 
               <div className="flex flex-col gap-2">
@@ -95,7 +95,7 @@ const FloatingNav: React.FC = () => {
             <div className="p-6 border-t border-white/5 bg-muted/10">
               <div className="flex items-center gap-3 ml-2">
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[9px] text-muted-foreground font-bold uppercase tracking-widest">Live Status</span>
+                <span className="text-[9px] text-muted-foreground font-bold uppercase tracking-widest">{t('floatingNav.liveStatus')}</span>
               </div>
             </div>
           </motion.nav>

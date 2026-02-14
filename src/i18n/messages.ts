@@ -64,7 +64,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'aboutSection.inventory.boxing.subtitle': '10+ лет опыта',
     'aboutSection.inventory.scienceCamp.title': 'Научный лагерь',
     'aboutSection.inventory.scienceCamp.subtitle': 'Организатор',
-    'aboutSection.inventory.powerlifting.title': 'Пауэрлифтинг',
+    'aboutSection.inventory.powerlifting.title': 'Зал',
     'aboutSection.inventory.powerlifting.subtitle': '3 года',
     'aboutSection.inventory.basketball.title': 'Баскетбол',
     'aboutSection.inventory.basketball.subtitle': 'Игрок',
@@ -135,14 +135,14 @@ export const translations: Record<Language, Record<string, string>> = {
     'floatingNav.liveStatus': 'Live Status',
 
     // Hero
-    'hero.role': 'Frontend Developer',
+    'hero.role': 'Fullstack Developer',
     'hero.cta': 'My Projects',
 
     // About
     'about.title': 'About Me',
     'about.greeting': "Hello, I'm Nikita Nigmatchanov",
     'about.role1': 'Developer',
-    'about.role2': 'Full Stack Developer',
+    'about.role2': 'Full Stack',
     'about.years': '2023 - present',
     'about.projectsLabel': 'Projects',
     'about.location': 'Currently based in Saint Petersburg, Russia. I enjoy building modern web apps with a focus on performance and user experience.',
@@ -178,8 +178,8 @@ export const translations: Record<Language, Record<string, string>> = {
     'aboutSection.inventory.boxing.subtitle': '10 years of experience',
     'aboutSection.inventory.scienceCamp.title': 'Science camp',
     'aboutSection.inventory.scienceCamp.subtitle': 'Organizer',
-    'aboutSection.inventory.powerlifting.title': 'Powerlifting',
-    'aboutSection.inventory.powerlifting.subtitle': '4 years',
+    'aboutSection.inventory.powerlifting.title': 'GYM',
+    'aboutSection.inventory.powerlifting.subtitle': '3 years',
     'aboutSection.inventory.basketball.title': 'Basketball',
     'aboutSection.inventory.basketball.subtitle': 'Player',
     'aboutSection.inventory.travel.title': 'Travel',
